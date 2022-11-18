@@ -15,3 +15,34 @@ ul li a .text-dropdown {
     margin-top: 12%;
     color: #BA68C8;
 }
+
+.sign-btn {
+    margin-top: 4%;
+    text-align: center;
+    margin-left: 40%;
+    width: 6rem;
+    background: #BA68C8;
+}
+
+.first-composant {
+    margin-top: 3%;
+    background-color: #e3b3eb;
+    height: 30rem;
+}
+
+.second-compsant {
+    margin-top: 3%;
+    height: 30rem;
+}
+
+.anim-desc {
+    color: #BA68C8;
+}
+
+.img-design-second:last-child {
+    margin-top: 6%;
+}
+
+.last-one {
+    margin-top: 14%;
+}
