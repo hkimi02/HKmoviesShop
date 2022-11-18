@@ -1,0 +1,17 @@
+a .logo {
+    width: 60px;
+    height: 60px;
+}
+
+.navbar-margin {
+    margin-top: 1%;
+}
+
+ul li a .text-dropdown {
+    margin-top: -10%;
+}
+
+.text-design {
+    margin-top: 12%;
+    color: #BA68C8;
+}
