@@ -14,6 +14,7 @@
         $_SESSION['iduser']=$res['iduser'];
         $_SESSION['username']=$res['username'];
         $_SESSION['email']=$res['email'];
+        $_SESSION['avatar']=$res['avatar'];
         $_SESSION['isAdmin']=$res['isAdmin'];
         $_SESSION['isEmploye']=$res['isEmploye'];
         $_SESSION['createdate']=$res['createdate'];
