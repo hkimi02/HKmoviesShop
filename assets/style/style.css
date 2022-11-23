@@ -60,3 +60,17 @@ footer .btn-comment button {
     width: 4rem;
     background: #BA68C8;
 }
+
+.submit-btn {
+    background: #BA68C8;
+}
+
+footer {
+    background: url("../images/logoDark.png") 300px 400px repeat;
+    height: 300px;
+    width: 1531px;
+}
+
+.footer-insight {
+    margin-top: 15%;
+}
