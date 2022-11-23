@@ -55,7 +55,6 @@ if (isset($_POST['submit'])) {
         exit;
     }
     $avatar = './storage/' . $name_file;
-
     $token = md5($username);
     $date = date('y/m/d');
     $sql = $db->prepare("INSERT INTO `users`( `username`, `email`, `password`, `isAdmin`, `isEmploye`, `createdate`, `token_verified`, `verified`)
