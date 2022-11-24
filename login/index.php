@@ -1,5 +1,6 @@
 <?php 
         require_once '../db_connect.php';
+        session_start();
     if(isset($_POST['login'])){
         extract($_POST);
         $req=$db->prepare('SELECT * FROM users WHERE email=:email AND password=:password');
@@ -10,7 +11,6 @@
         $res=$req->fetch();
         var_dump($res);
         if($res){
-        session_start();
         $_SESSION['iduser']=$res['iduser'];
         $_SESSION['username']=$res['username'];
         $_SESSION['email']=$res['email'];

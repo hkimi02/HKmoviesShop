@@ -74,9 +74,3 @@ footer {
 .footer-insight {
     margin-top: 15%;
 }
-
-nav .profile-pic {
-    height: 0.5rem;
-    width: 0.5rem;
-    border-radius: 50%;
-}
