@@ -35,13 +35,14 @@
         }
         //move cv to the cv_demande folder in storage
         $name_file=md5(mt_rand()).'.'.$type;
-        if(!move_uploaded_file($_FILES['cv']['tmp_name'],'../storage/'.$name_file)){
+        if(!move_uploaded_file($_FILES['cv']['tmp_name'],'../storage/cv_demande/'.$name_file)){
             header("location:index.php?msg=cv not uploaded&class=danger");
             exit;
         }
-        $cv='./storage/cv_demande/'.$name_file;
-        $req=$db->prepare('INSERT INTO jobrequest(name,email,experience,cv,description,state)
-        VALUES(:name,:email,:experience,:cv,:descripition,:state)');
+        $cv='../storage/cv_demande/'.$name_file;
+        $token=md5($name);
+        $req=$db->prepare('INSERT INTO jobrequest(name,email,experience,cv,description,state,token)
+        VALUES(:name,:email,:experience,:cv,:descripition,:state,:token)');
         $req->execute([
             'name'=>$name,
             'email'=>$email,
@@ -49,6 +50,7 @@
             'cv'=>$cv,
             'descripition'=>$descripition,
             'state'=>0,
+            'token'=>$token,
         ]);
         header('location:index.php?msg=thank you for you interest in applying for a job in our shop we will reply to you by mail soon !&class=success');
     }
