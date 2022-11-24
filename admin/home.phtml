@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,13 +59,41 @@
                             </ul>
                         </li>
                     </ul>
-                    <div class="d-flex">
-                        <?= $_SESSION['username'] ?>
-                        <img src="<?= $_SESSION['avatar'] ?>" alt="" class="profile-pic">
+                    <div class="float-end d-flex">
+                        <p><?= $_SESSION['username'] ?></p>
+                        <img class="rounded shadow-sm" width="10%" height="10%" src="<?= $_SESSION['avatar'] ?>" alt="">
+                        <a href="../logout/"><button class="btn btn-primary">logout</button></a>
                     </div>
                 </div>
             </div>
         </nav>
+
+    <div class="main">
+    <div class="row">
+        <h1 class="text-center">job demandes</h1>
+        <?php foreach($res as $element){ ?>
+                        <div class="demande card col">
+                            <h3>name : <?=$element['name'] ?></h3>
+                            <h3>email :  <?=$element['email'] ?></h3>
+                            <h3>experince :  <?=$element['experience']==1 ? 'yes' : 'no' ?></h3>
+                            <h5>state :  <?php 
+                                if($element['state']==0){
+                                    echo 'en cours';
+                                }
+                                else if($element['state']==1){
+                                    echo 'accepted';
+                                }else{
+                                    echo 'not accepted ';
+                                }?></h5>
+                                <div class="d-flex">
+                            <a href=".<?= $element['cv'] ?>" download="cv<?= $element['name'] ?>"><button class="btn btn-primary">download cv</button></a>
+                            <a href="./index.php?id_apply=<?= $element['iddemande'] ?>&accept=1"><button <?= $element['state']!=0 ? 'disabled' : '' ?> class="btn btn-success">accept apply</button></a>
+                            <a  href="./index.php?id_apply=<?= $element['iddemande'] ?>&refuse=1"><button <?= $element['state']!=0 ? 'disabled' : '' ?> class="btn btn-danger">refuse </button></a>
+                            </div>
+                        </div>
+                        <?php }?>
+    </div>
+    </div>
     </div>
         <footer>
             <div class="text-muted text-center text-light footer-insight">
