@@ -19,7 +19,7 @@ if($res){
 else{
     echo 'this is one visit link';
     exit;
-}
+}}
 if (isset($_POST['submit'])) {
     extract($_POST);
     //check username length
@@ -72,21 +72,22 @@ if (isset($_POST['submit'])) {
     $avatar = './storage/' . $name_file;
     $token = md5($username);
     $date = date('y/m/d');
-    $sql = $db->prepare("INSERT INTO `users`( `username`, `email`, `password`, `isAdmin`, `isEmploye`, `createdate`, `token_verified`, `verified`)
-    VALUES (:us,:em,:pass,:isadmin,:isempl,:create,:token,:verif)");
+    $sql = $db->prepare("INSERT INTO `users`( `username`, `email`, `password`,avatar, `isAdmin`, `isEmploye`, `createdate`, `token_verified`, `verified`)
+    VALUES (:us,:em,:pass,:avatar,:isadmin,:isempl,:create,:token,:verif)");
     $sql->execute([
         'us' => $username,
         'em' => $email,
         'pass' => $password,
+        'avatar'=>$avatar,
         'isadmin' => 0,
         'isempl' => 1,
         'create' => $date,
         'verif' => 0,
-        'token' => $token
+        'token' => $token,
     ]);
     $link = "<a href='" . $_SERVER['HTTP_HOST'] . "/" . explode('/', $_SERVER['PHP_SELF'])[1] . "/verify/index.php?token=" . $token . "&email=" . $email . "'>cliquer ici pour verifier</a>";
     sendmail('HKmoviesShop', $email, 'Lien de verifiaction', 'lien' . $link . '');
-}
+    header('location:../verify/index.php?msg=a verification email have been sent to you');
 }
 show:
 include './home.phtml';
