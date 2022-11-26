@@ -3,9 +3,14 @@
     session_start();
     use PHPMailer\PHPMailer\PHPMailer;
     include "../send.php";
-    $req=$db->prepare('SELECT * FROM jobrequest'); 
+    //en cours demandes
+    $req=$db->prepare('SELECT * FROM jobrequest WHERE STATE=0'); 
     $req->execute();
-    $res=$req->fetchAll();
+    $encours=$req->fetchAll();
+    //declined deamndes
+    $req=$db->prepare('SELECT * FROM jobrequest WHERE STATE=2'); 
+    $req->execute();
+    $declined=$req->fetchAll();
     if(array_key_exists('accept',$_GET)){
         $req=$db->prepare('SELECT * FROM jobrequest WHERE iddemande=:id_demande'); 
         $req->execute([
