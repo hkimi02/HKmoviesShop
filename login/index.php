@@ -19,8 +19,15 @@
         $_SESSION['isEmploye']=$res['isEmploye'];
         $_SESSION['createdate']=$res['createdate'];
         $_SESSION['verified']=$res['verified'];
+        if($_SESSION['isAdmin']==1){
         header('location:../admin/index.php?msg=welcome boss');
+        }else if($_SESSION['isEmploye']==1){
+            header('location:../profile_employe/index.php?msg=welcome employe');
         }
+        else{
+            header('location:../profile_user/index.php?msg=welcome user');
+        }
+    }
         else{
             header('location:../layout.phtml?msg=verify you email and password');
         }
