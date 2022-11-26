@@ -57,12 +57,13 @@ if (isset($_POST['submit'])) {
     $avatar = './storage/' . $name_file;
     $token = md5($username);
     $date = date('y/m/d');
-    $sql = $db->prepare("INSERT INTO `users`( `username`, `email`, `password`, `isAdmin`, `isEmploye`, `createdate`, `token_verified`, `verified`)
-    VALUES (:us,:em,:pass,:isadmin,:isempl,:create,:token,:verif)");
+    $sql = $db->prepare("INSERT INTO `users`( `username`, `email`, `password`,avatar ,`isAdmin`, `isEmploye`, `createdate`,`token_verified`, `verified`)
+    VALUES (:us,:em,:pass,:avatar,:isadmin,:isempl,:create,:token,:verif)");
     $sql->execute([
         'us' => $username,
         'em' => $email,
         'pass' => $password,
+        'avatar'=>$avatar,
         'isadmin' => 0,
         'isempl' => 0,
         'create' => $date,
