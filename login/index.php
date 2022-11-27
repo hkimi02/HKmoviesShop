@@ -20,16 +20,16 @@
         $_SESSION['createdate']=$res['createdate'];
         $_SESSION['verified']=$res['verified'];
         if($_SESSION['isAdmin']==1){
-        header('location:../admin/index.php?msg=welcome boss');
+        header('location:../admin/index.php?msg=welcome boss&class=success');
         }else if($_SESSION['isEmploye']==1){
-            header('location:../profile_employe/index.php?msg=welcome employe');
+            header('location:../profile_employe/index.php?msg=welcome employe&class=success');
         }
         else{
-            header('location:../profile_user/index.php?msg=welcome user');
+            header('location:../profile_user/index.php?msg=welcome user&class=success');
         }
     }
         else{
-            header('location:../layout.phtml?msg=verify you email and password');
+            header('location:../layout.phtml?msg=verify you email and password&class=danger');
         }
     }
 ?>
