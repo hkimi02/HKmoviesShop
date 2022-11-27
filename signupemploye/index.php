@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
         header("location:index.php?msg=image not uploaded&type=danger");
         exit;
     }
-    $avatar = './storage/' . $name_file;
+    $avatar = '../storage/' . $name_file;
     $token = md5($username);
     $date = date('y/m/d');
     $sql = $db->prepare("INSERT INTO `users`( `username`, `email`, `password`,avatar, `isAdmin`, `isEmploye`, `createdate`, `token_verified`, `verified`)
@@ -87,7 +87,7 @@ if (isset($_POST['submit'])) {
     ]);
     $link = "<a href='" . $_SERVER['HTTP_HOST'] . "/" . explode('/', $_SERVER['PHP_SELF'])[1] . "/verify/index.php?token=" . $token . "&email=" . $email . "'>cliquer ici pour verifier</a>";
     sendmail('HKmoviesShop', $email, 'Lien de verifiaction', 'lien' . $link . '');
-    header('location:../verify/index.php?msg=a verification email have been sent to you');
+    header('location:../layout.phtml');
 }
 show:
 include './home.phtml';

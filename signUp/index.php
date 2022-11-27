@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
         header("location:index.php?msg=image not uploaded&type=danger");
         exit;
     }
-    $avatar = './storage/' . $name_file;
+    $avatar = '../storage/' . $name_file;
     $token = md5($username);
     $date = date('y/m/d');
     $sql = $db->prepare("INSERT INTO `users`( `username`, `email`, `password`,avatar ,`isAdmin`, `isEmploye`, `createdate`,`token_verified`, `verified`)
