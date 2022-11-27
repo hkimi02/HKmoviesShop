@@ -32,56 +32,118 @@
                                     movie
                                 </span></a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link"><span class="material-symbols-outlined">
-                                    employes
-                                </span></a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="material-smanymbols-outlined">
-                                   manage demandes
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="material-symbols-outlined">
-                                            waiting states
-                                        </span><span class="text-dropdown">waiting</span></a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href=""><span class="material-symbols-outlined">
-                                            deleted demands
-                                        </span><span class="text-dropdown">deleted demands</span></a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                     <div class="float-end d-flex">
                         <p><?= $_SESSION['username'] ?></p>
-                        <img class="shadow-sm" width="50px" height="50px" src="<?= $_SESSION['avatar'] ?>" alt="" style="border-radius: 50%;">
+                        <img class="shadow-sm" width="50px" height="50px" src=".<?= $_SESSION['avatar'] ?>" alt="" style="border-radius: 50%;">
                         <a href="../logout/"><button class="btn btn-primary">logout</button></a>
                     </div>
                 </div>
             </div>
         </nav>
-        <footer class="row mt-5">
-    <div class="text-muted text-center text-light footer-insight">
-      <div class="">
-        <i class="bi bi-facebook"></i>
-        <i class="bi bi-instagram"></i>
-        <i class="bi bi-github"></i>
-        <i class="bi bi-info-circle"></i>
-      </div>
-      <div class="second-footer">
-        <p> &copy; 2022 made by Hkimi Mohamed Amin <i class="bi bi-linkedin"></i></p>
-      </div>
+        <div class="row">
+            <?php if (array_key_exists('msg', $_GET)) : ?>
+                <div class="alert alert-<?= $_GET['class'] ?>">
+                    <?= $_GET['msg']; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+        <div class="row">
+            <div class="col"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Add Film
+                </button>
+            </div>
+            <div class="col flex-end"><button type="button" class="btn btn-primary">
+                    Add tvshow
+                </button>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">add movie</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="./index.php" method="POST" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label for="movie_name" class="form-label">movie name</label>
+                                    <input type="text" class="form-control" id="movie_name" name="movie_name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="director" class="form-label">director</label>
+                                    <input type="text" class="form-control" id="director" name="director" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">description</label>
+                                    <input type="text" class="form-control" id="description" name="description" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="link" class="form-label">trailler link</label>
+                                    <input type="text" class="form-control" id="link" name="link" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="length" class="form-label">length (in minutes)</label>
+                                    <input type="number" class="form-control" id="length" name="length" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="poster" class="form-label">poster</label>
+                                    <input type="file" class="form-control" id="poster" name="poster" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="genre" class="form-label">genre</label>
+                                    <select name="idgenre" id="genre" class="from-control" required>
+                                        <?php foreach ($genres as $element) : ?>
+                                            <option value="<?= $element['idgenre'] ?>"><?= $element['namegenre'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn" style="background-color: #BA68C8;" name="add">Add movie</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h1>added movies</h1>
+                <?php foreach($addedmovies as $element): ?>
+                <div class="card">
+                    <h5>movie name : <?= $element['movie_name'] ?></h5>                    
+                    <h5>director : <?= $element['director'] ?></h5>                    
+                    <h5>length : <?= calculer_taille($element['length'])['nbheures'].':'.calculer_taille($element['length'])['nbminutes']  ?></h5>                    
+                    <h5>genre : <?php donner_genre($element['idgenre'],$db); ?></h5>  
+                    <div class="row">  
+                    <button class="btn btn-warning col" >edit</button>
+                    <button class="btn btn-danger col" >delete</button>               
+                    </div> 
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
     </div>
-  </footer>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-        <script src="../assets/script/script.js"></script>
+    <footer class="row mt-5">
+        <div class="text-muted text-center text-light footer-insight">
+            <div class="">
+                <i class="bi bi-facebook"></i>
+                <i class="bi bi-instagram"></i>
+                <i class="bi bi-github"></i>
+                <i class="bi bi-info-circle"></i>
+            </div>
+            <div class="second-footer">
+                <p> &copy; 2022 made by Hkimi Mohamed Amin <i class="bi bi-linkedin"></i></p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="../assets/script/script.js"></script>
 
 </body>
 
