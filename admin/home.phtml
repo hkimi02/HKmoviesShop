@@ -34,14 +34,14 @@
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link"><span class="material-symbols-outlined">
-badge
-</span></a>
+                                    badge
+                                </span></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="material-symbols-outlined">
-request_page
-</span>
+                                <span class="material-symbols-outlined">
+                                    request_page
+                                </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="material-symbols-outlined">
@@ -50,7 +50,7 @@ request_page
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href=""><span class="material-symbols-outlined">
+                                <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#declined"><span class="material-symbols-outlined">
                                             delete
                                         </span><span class="text-dropdown">deleted demands</span></a></li>
                                 <li>
@@ -68,61 +68,108 @@ request_page
             </div>
         </nav>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">job demandes</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-        <?php foreach($encours as $element){ ?>
-                        <div class="demande card col">
-                            <h3>name : <?=$element['name'] ?></h3>
-                            <h3>email :  <?=$element['email'] ?></h3>
-                            <h3>experince :  <?=$element['experience']==1 ? 'yes' : 'no' ?></h3>
-                            <h5>state :  <?php 
-                                if($element['state']==0){
-                                    echo 'en cours';
-                                }
-                                else if($element['state']==1){
-                                    echo 'accepted';
-                                }else{
-                                    echo 'not accepted ';
-                                }?></h5>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">job demandes</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <?php foreach ($encours as $element) { ?>
+                            <div class="demande card col">
+                                <h3>name : <?= $element['name'] ?></h3>
+                                <h3>email : <?= $element['email'] ?></h3>
+                                <h3>experince : <?= $element['experience'] == 1 ? 'yes' : 'no' ?></h3>
+                                <h5>state : <?php
+                                            if ($element['state'] == 0) {
+                                                echo 'en cours';
+                                            } else if ($element['state'] == 1) {
+                                                echo 'accepted';
+                                            } else {
+                                                echo 'not accepted ';
+                                            } ?></h5>
                                 <div class="d-flex">
-                            <a href=".<?= $element['cv'] ?>" download="cv <?= $element['name'] ?>"><button class="btn btn-primary">download cv</button></a>
-                            <a href="./index.php?id_apply=<?= $element['iddemande'] ?>&accept=1"><button <?= $element['state']!=0 ? 'disabled' : '' ?> class="btn btn-success">accept apply</button></a>
-                            <a  href="./index.php?id_apply=<?= $element['iddemande'] ?>&refuse=1"><button <?= $element['state']!=0 ? 'disabled' : '' ?> class="btn btn-danger">refuse </button></a>
+                                    <a href=".<?= $element['cv'] ?>" download="cv <?= $element['name'] ?>"><button class="btn btn-primary">download cv</button></a>
+                                    <a href="./index.php?id_apply=<?= $element['iddemande'] ?>&accept=1"><button <?= $element['state'] != 0 ? 'disabled' : '' ?> class="btn btn-success">accept apply</button></a>
+                                    <a href="./index.php?id_apply=<?= $element['iddemande'] ?>&refuse=1"><button <?= $element['state'] != 0 ? 'disabled' : '' ?> class="btn btn-danger">refuse </button></a>
+                                </div>
                             </div>
-                        </div>
-                        <?php }?>
+                        <?php } ?>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
+        <div class="modal fade" id="declined" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">job demandes</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <?php foreach ($declined as $element) { ?>
+                            <div class="demande card col">
+                                <h3>name : <?= $element['name'] ?></h3>
+                                <h3>email : <?= $element['email'] ?></h3>
+                                <h3>experince : <?= $element['experience'] == 1 ? 'yes' : 'no' ?></h3>
+                                <h5>state : <?php
+                                            if ($element['state'] == 0) {
+                                                echo 'en cours';
+                                            } else if ($element['state'] == 1) {
+                                                echo 'accepted';
+                                            } else {
+                                                echo 'not accepted ';
+                                            } ?></h5>
+                                <div class="d-flex">
+                                    <a href=".<?= $element['cv'] ?>" download="cv <?= $element['name'] ?>"><button class="btn btn-primary">download cv</button></a>
+                                    <a href="./index.php?id_apply=<?= $element['iddemande'] ?>&accept=1"><button <?= $element['state'] != 0 ? 'disabled' : '' ?> class="btn btn-success">accept apply</button></a>
+                                    <a href="./index.php?id_apply=<?= $element['iddemande'] ?>&refuse=1"><button <?= $element['state'] != 0 ? 'disabled' : '' ?> class="btn btn-danger">refuse </button></a>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-    <div class="main">
-    <div class="row">
-
-    </div>
-    </div>
+        <div class="main">
+            <div class="row">
+                <div class="col">
+                    <h1 class="text-center">employes</h1>
+                    <?php foreach($employes as $element): ?>
+                    <div class="card row text-center" style="width:30rem;height:10rem;">
+                                <h3> name :<?= $element['username'] ?></h3>
+                                <h3>email : <?= $element['email'] ?></h3>
+                                <h3>working since : <?= $element['createdate'] ?></h3>
+                                <h3>stats : <button class="btn btn-primary">show stats</button></h3>
+                                <h3>send email : <a href="mailto:<?= $element['email'] ?>">
+                                <button class="btn btn-primary">send email</button></a></h3>
+                                <h3>delete employe : <button  class="btn btn-danger">delete employee</button></h3>
+                            </div>
+                            <hr>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
     </div>
     <footer class="row mt-5">
-    <div class="text-muted text-center text-light footer-insight">
-      <div class="">
-        <i class="bi bi-facebook"></i>
-        <i class="bi bi-instagram"></i>
-        <i class="bi bi-github"></i>
-        <i class="bi bi-info-circle"></i>
-      </div>
-      <div class="second-footer">
-        <p> &copy; 2022 made by Hkimi Mohamed Amin <i class="bi bi-linkedin"></i></p>
-      </div>
-    </div>
-  </footer>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-        <script src="../assets/script/script.js"></script>
+        <div class="text-muted text-center text-light footer-insight">
+            <div class="">
+                <i class="bi bi-facebook"></i>
+                <i class="bi bi-instagram"></i>
+                <i class="bi bi-github"></i>
+                <i class="bi bi-info-circle"></i>
+            </div>
+            <div class="second-footer">
+                <p> &copy; 2022 made by Hkimi Mohamed Amin <i class="bi bi-linkedin"></i></p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="../assets/script/script.js"></script>
 
 </body>
 

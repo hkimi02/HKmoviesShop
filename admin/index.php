@@ -11,6 +11,10 @@
     $req=$db->prepare('SELECT * FROM jobrequest WHERE STATE=2'); 
     $req->execute();
     $declined=$req->fetchAll();
+    //employees 
+    $req=$db->prepare('SELECT * FROM users WHERE isEmploye=:isemploye');
+    $req->execute(['isemploye'=>1]);
+    $employes=$req->fetchAll();
     if(array_key_exists('accept',$_GET)){
         $req=$db->prepare('SELECT * FROM jobrequest WHERE iddemande=:id_demande'); 
         $req->execute([
