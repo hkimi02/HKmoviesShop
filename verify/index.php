@@ -1,7 +1,5 @@
 <?php 
- 
- require_once '../db_connect.php';
-  
+require_once '../db_connect.php';
   $email=$_GET['email'];
   $token=$_GET['token'];
   $resultat=0;
