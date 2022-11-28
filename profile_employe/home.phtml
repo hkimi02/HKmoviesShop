@@ -49,11 +49,11 @@
             <?php endif; ?>
         </div>
         <div class="row">
-            <div class="col"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <div class="col" style="margin-left: 20%;"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Add Film
                 </button>
             </div>
-            <div class="col flex-end"><button type="button" class="btn btn-primary">
+            <div class="col flex-end" style="margin-left: 20%;"><button type="button" class="btn btn-primary" data-bs-target="#addshow" data-bs-toggle="modal">
                     Add tvshow
                 </button>
             </div>
@@ -93,38 +93,104 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="genre" class="form-label">genre</label>
-                                    <select name="idgenre" id="genre" class="from-control" required>
+                                    <select name="idgenre" id="genre" class="form-select" required>
                                         <?php foreach ($genres as $element) : ?>
                                             <option value="<?= $element['idgenre'] ?>"><?= $element['namegenre'] ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <button type="submit" class="btn" style="background-color: #BA68C8;" name="add">Add movie</button>
+                                <button type="submit" class="btn flex-end" style="background-color: #BA68C8;" name="add">Add movie</button>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             </form>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="addshow" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">add show</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="./index.php" method="POST" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label for="show_name" class="form-label">tv show name</label>
+                                    <input type="text" class="form-control" id="show_name" name="show_name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="director" class="form-label">director</label>
+                                    <input type="text" class="form-control" id="director" name="director" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">description</label>
+                                    <input type="text" class="form-control" id="description" name="description" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="link" class="form-label">trailler link</label>
+                                    <input type="text" class="form-control" id="link" name="link" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="poster" class="form-label">poster</label>
+                                    <input type="file" class="form-control" id="poster" name="poster" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="genre" class="form-label">genre</label>
+                                    <select name="idgenre" id="genre" class="form-select" required>
+                                        <?php foreach ($genres as $element) : ?>
+                                            <option value="<?= $element['idgenre'] ?>"><?= $element['namegenre'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn flex-end" style="background-color: #BA68C8;" name="add_show">Add show</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <h1>added movies</h1>
-                <?php foreach($addedmovies as $element): ?>
-                <div class="card">
-                    <h5>movie name : <?= $element['movie_name'] ?></h5>                    
-                    <h5>director : <?= $element['director'] ?></h5>                    
-                    <h5>length : <?= calculer_taille($element['length'])['nbheures'].':'.calculer_taille($element['length'])['nbminutes']  ?></h5>                    
-                    <h5>genre : <?php donner_genre($element['idgenre'],$db); ?></h5>  
-                    <div class="row">  
-                    <button class="btn btn-warning col" >edit</button>
-                    <button class="btn btn-danger col" >delete</button>               
-                    </div> 
-                </div>
+                <h1 class="text-center">Added Movies</h1>
+                <?php foreach ($addedmovies as $element) : ?>
+                    <div class="card row flex-center text-center"  style="width: 20rem;margin-left:25%;">
+                        <h5>movie name : <?= $element['movie_name'] ?></h5>
+                        <h5>director : <?= $element['director'] ?></h5>
+                        <h5>length : <?= calculer_taille($element['length'])['nbheures'] . ':' . calculer_taille($element['length'])['nbminutes']  ?></h5>
+                        <h5>genre : <?php donner_genre($element['idgenre'], $db); ?></h5>
+                        <div class="row">
+                        <a href="index.php?id_delete_movie=<?= $element['idmovie']?>" class="col">
+                        <button class="btn btn-danger">delete</button>
+                        </a>
+                        <a href="#" class="col">
+                        <button class="btn btn-success">edit</button>
+                        </a> 
+                        </div>
+                    </div>
+                    <hr>
+                <?php endforeach; ?>
+            </div>
+            <div class="col">
+                <h1 class="text-center">Added Shows</h1>
+                <?php foreach ($addedshows as $element) : ?>
+                    <div class="card row flex-center text-center"  style="width: 20rem;margin-left:25%;">
+                        <h5>movie name : <?= $element['name'] ?></h5>
+                        <h5>director : <?= $element['director'] ?></h5>
+                        <h5>genre : <?php donner_genre($element['idgenre'], $db); ?></h5>
+                        <div class="row">
+                        <a href="index.php?id_delete_show=<?= $element['idtvshow']?>" class="col">
+                        <button class="btn btn-danger">delete</button>
+                        </a>
+                            <button class="btn btn-warning col">edit</button>
+                            
+                        </div>
+                    </div>
                 <?php endforeach; ?>
             </div>
         </div>
