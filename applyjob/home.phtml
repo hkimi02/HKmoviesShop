@@ -50,7 +50,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href=""><span class="material-symbols-outlined">
+                                <li><a class="dropdown-item" href="../signUp/"><span class="material-symbols-outlined">
                                             person_add
                                         </span><span class="text-dropdown">Sign Up</span></a></li>
                                 <li>
@@ -59,14 +59,11 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    </form>
                 </div>
             </div>
         </nav>
         <div class="row">
-            <div class="sign-up-user-form">
+            <div class="sign-up-user-form col">
                 <form class="shadow-lg p-5 rounded col" method="POST" action="./index.php" enctype="multipart/form-data">
                     <h1 class="text-center text-capitalize">fill this form to apply for a job at HKmoviesShop</h1>
                     <?php if (array_key_exists('msg', $_GET)) : ?>
@@ -132,16 +129,16 @@
             </div>
         </div>
     </div>
-    <footer class="row">
+    <footer class="row mt-5">
         <div class="text-muted text-center text-light footer-insight">
             <div class="">
                 <i class="bi bi-facebook"></i>
                 <i class="bi bi-instagram"></i>
                 <i class="bi bi-github"></i>
-                <i class="bi bi-linkedin"></i>
+                <i class="bi bi-info-circle"></i>
             </div>
             <div class="second-footer">
-                <p> &copy; 2022 made by Hkimi Mohamed Amin <i class="bi bi-info-circle"></i></p>
+                <p> &copy; 2022 made by Hkimi Mohamed Amin <i class="bi bi-linkedin"></i></p>
             </div>
         </div>
     </footer>
