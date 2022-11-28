@@ -31,7 +31,7 @@ movie
 </span></a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link"><span class="material-symbols-outlined">
+          <a href="../applyjob/" class="nav-link"><span class="material-symbols-outlined">
 badge
 </span></a>
         </li>
@@ -46,21 +46,18 @@ manage_accounts
 login
 </span><span class="text-dropdown">login</span></a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href=""><span class="material-symbols-outlined">
+            <li><a class="dropdown-item" href="#"><span class="material-symbols-outlined">
 person_add
 </span><span class="text-dropdown">Sign Up</span></a></li>
             <li><hr class="dropdown-divider"></li>
           </ul>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      </form>
     </div>
   </div>
 </nav>
 <div class="row">
-    <div class="sign-up-user-form">
+    <div class="sign-up-user-form col">
 <form class="shadow-lg p-5 rounded col"  method="POST" action="./index.php" enctype="multipart/form-data">
 <h1 class="text-center text-capitalize">welcome fill this form and beacame one of our family</h1>
 <?php if(array_key_exists('msg',$_GET)): ?>
@@ -92,7 +89,7 @@ person_add
 </form>
     </div>
 <div class="col">
-<img src="../assets/images/job.svg" class="img-thumbnail logo">
+<img src="../assets/images/Movie Night-bro.svg" class="img-thumbnail logo" style="height:41.5rem;">
 </div>
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -103,7 +100,7 @@ person_add
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form action="" method="POST">
+      <form action="../login/" method="POST">
   <div class="mb-3">
     <label for="email" class="form-label">Email address</label>
     <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
@@ -121,7 +118,8 @@ person_add
     </div>
   </div>
 </div>
-<footer class="row">
+</div>
+<footer class="row mt-5">
     <div class="text-muted text-center text-light footer-insight">
       <div class="">
         <i class="bi bi-facebook"></i>

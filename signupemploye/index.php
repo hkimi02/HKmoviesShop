@@ -2,6 +2,7 @@
 require_once '../db_connect.php';
 use PHPMailer\PHPMailer\PHPMailer;
 include "../send.php";
+$verif=false;
 if(array_key_exists('token',$_GET) && array_key_exists('email',$_GET )&& array_key_exists('idapply',$_GET)){
 $req=$db->prepare('SELECT * FROM jobrequest WHERE iddemande=:id_apply AND token=:token AND email=:email');
 $req->execute([
@@ -17,8 +18,7 @@ if($res){
     header('location:home.phtml');
 }
 else{
-    echo 'this is one visit link';
-    exit;
+    $verif=false;
 }}
 if (isset($_POST['submit'])) {
     extract($_POST);
