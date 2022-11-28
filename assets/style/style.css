@@ -78,15 +78,7 @@
         footer i {
             cursor: pointer;
         }
-        
-        @media screen and (max-width:768px) {
-            body {
-                background-color: black;
-            }
-            .first-composant {
-                background-color: red;
-            }
-        }
+        /* @media screen and (max-width:768px) {} */
         
         a {
             text-decoration: none;
