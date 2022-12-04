@@ -1,8 +1,9 @@
 <?php 
     require_once '../db_connect.php';
-    session_start();
     use PHPMailer\PHPMailer\PHPMailer;
     include "../send.php";
+    session_start();
+    if(isset($_SESSION['username'])){
     //en cours demandes
     $req=$db->prepare('SELECT * FROM jobrequest WHERE STATE=0'); 
     $req->execute();
@@ -38,3 +39,7 @@ if(array_key_exists('refuse',$_GET)){
     header('location:index.php?msg=state changed succesfuly !&type=success');
 }
     include 'home.phtml';
+    
+}else{
+    header('location:../index.php?msg=you have to log in to acces your page !&class=danger');
+}

@@ -15,200 +15,269 @@
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-margin">
+        <nav class="navbar navbar-expand-lg navbar-margin background rounded">
             <div class="container-fluid">
-                <a class="navbar-brand" href="../layout.phtml"><img src="../assets/images/logoLight.png" alt="" class="logo"></a>
+                <a class="navbar-brand" href="#"><img src="../assets/images/logoDark-removebg.png" alt="" class="logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../layout.phtml"><span class="material-symbols-outlined">
+                            <a class="nav-link active" aria-current="page" href="../index.php"><span class="material-symbols-outlined text-white">
                                     home
                                 </span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><span class="material-symbols-outlined">
+                            <a class="nav-link" href="#"><span class="material-symbols-outlined text-white">
                                     movie
                                 </span></a>
                         </li>
+                        <li class="nav-item">
+                            <a href="../applyjob/" class="nav-link"><span class="material-symbols-outlined text-white">
+                                    badge
+                                </span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="material-symbols-outlined text-white">
+                                    manage_accounts
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="material-symbols-outlined">
+                                            login
+                                        </span><span class="text-dropdown">login</span></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="./signUp/"><span class="material-symbols-outlined">
+                                            person_add
+                                        </span><span class="text-dropdown">Sign Up</span></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
-                    <div class="float-end d-flex">
+                    <div class="info" style="margin-left: -12%;">
                         <p><?= $_SESSION['username'] ?></p>
-                        <img class="shadow-sm" width="50px" height="50px" src=".<?= $_SESSION['avatar'] ?>" alt="" style="border-radius: 50%;">
-                        <a href="../logout/"><button class="btn btn-primary">logout</button></a>
+                        <div class="dropdown text-end">
+                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src=".<?= $_SESSION['avatar'] ?>" alt="mdo" width="32" height="32" class="rounded-circle">
+                            </a>
+                            <ul class="dropdown-menu text-small">
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-gear-fill"></i></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="../logout/"><i class="bi bi-door-closed-fill"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </nav>
-        <div class="row">
-            <?php if (array_key_exists('msg', $_GET)) : ?>
-                <div class="alert alert-<?= $_GET['class'] ?>">
-                    <?= $_GET['msg']; ?>
+        <div class="main">
+            <div class="row">
+                <?php if (array_key_exists('msg', $_GET)) : ?>
+                    <div class="alert alert-<?= $_GET['class'] ?>">
+                        <?= $_GET['msg']; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="row">
+                <div class="col" style="margin-left: 20%;"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Add Film
+                    </button>
                 </div>
-            <?php endif; ?>
-        </div>
-        <div class="row">
-            <div class="col" style="margin-left: 20%;"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Add Film
-                </button>
-            </div>
-            <div class="col flex-end" style="margin-left: 20%;"><button type="button" class="btn btn-primary" data-bs-target="#addshow" data-bs-toggle="modal">
-                    Add tvshow
-                </button>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">add movie</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="./index.php" method="POST" enctype="multipart/form-data">
-                                <div class="mb-3">
-                                    <label for="movie_name" class="form-label">movie name</label>
-                                    <input type="text" class="form-control" id="movie_name" name="movie_name" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="director" class="form-label">director</label>
-                                    <input type="text" class="form-control" id="director" name="director" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="description" class="form-label">description</label>
-                                    <input type="text" class="form-control" id="description" name="description" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="link" class="form-label">trailler link</label>
-                                    <input type="text" class="form-control" id="link" name="link" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="length" class="form-label">length (in minutes)</label>
-                                    <input type="number" class="form-control" id="length" name="length" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="poster" class="form-label">poster</label>
-                                    <input type="file" class="form-control" id="poster" name="poster" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="genre" class="form-label">genre</label>
-                                    <select name="idgenre" id="genre" class="form-select" required>
-                                        <?php foreach ($genres as $element) : ?>
-                                            <option value="<?= $element['idgenre'] ?>"><?= $element['namegenre'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn flex-end" style="background-color: #BA68C8;" name="add">Add movie</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                    </div>
+                <div class="col flex-end" style="margin-left: 20%;"><button type="button" class="btn btn-primary" data-bs-target="#addshow" data-bs-toggle="modal">
+                        Add tvshow
+                    </button>
                 </div>
-            </div>
-            <div class="modal fade" id="addshow" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">add show</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">add movie</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="./index.php" method="POST" enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                        <label for="movie_name" class="form-label">movie name</label>
+                                        <input type="text" class="form-control" id="movie_name" name="movie_name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="director" class="form-label">director</label>
+                                        <input type="text" class="form-control" id="director" name="director" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">description</label>
+                                        <input type="text" class="form-control" id="description" name="description" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="link" class="form-label">trailler link</label>
+                                        <input type="text" class="form-control" id="link" name="link" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="length" class="form-label">length (in minutes)</label>
+                                        <input type="number" class="form-control" id="length" name="length" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="poster" class="form-label">poster</label>
+                                        <input type="file" class="form-control" id="poster" name="poster" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="genre" class="form-label">genre</label>
+                                        <select name="idgenre" id="genre" class="form-select" required>
+                                            <?php foreach ($genres as $element) : ?>
+                                                <option value="<?= $element['idgenre'] ?>"><?= $element['namegenre'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn flex-end" style="background-color: #BA68C8;" name="add">Add movie</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </form>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            <form action="./index.php" method="POST" enctype="multipart/form-data">
-                                <div class="mb-3">
-                                    <label for="show_name" class="form-label">tv show name</label>
-                                    <input type="text" class="form-control" id="show_name" name="show_name" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="director" class="form-label">director</label>
-                                    <input type="text" class="form-control" id="director" name="director" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="description" class="form-label">description</label>
-                                    <input type="text" class="form-control" id="description" name="description" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="link" class="form-label">trailler link</label>
-                                    <input type="text" class="form-control" id="link" name="link" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="poster" class="form-label">poster</label>
-                                    <input type="file" class="form-control" id="poster" name="poster" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="genre" class="form-label">genre</label>
-                                    <select name="idgenre" id="genre" class="form-select" required>
-                                        <?php foreach ($genres as $element) : ?>
-                                            <option value="<?= $element['idgenre'] ?>"><?= $element['namegenre'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn flex-end" style="background-color: #BA68C8;" name="add_show">Add show</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </form>
+                        <div class="modal-footer">
                         </div>
-                    </div>
-                    <div class="modal-footer">
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <h1 class="text-center">Added Movies</h1>
-                <?php foreach ($addedmovies as $element) : ?>
-                    <div class="card row flex-center text-center"  style="width: 20rem;margin-left:25%;">
-                        <h5>movie name : <?= $element['movie_name'] ?></h5>
-                        <h5>director : <?= $element['director'] ?></h5>
-                        <h5>length : <?= calculer_taille($element['length'])['nbheures'] . ':' . calculer_taille($element['length'])['nbminutes']  ?></h5>
-                        <h5>genre : <?php donner_genre($element['idgenre'], $db); ?></h5>
-                        <div class="row">
-                        <a href="index.php?id_delete_movie=<?= $element['idmovie']?>" class="col">
-                        <button class="btn btn-danger">delete</button>
-                        </a>
-                        <a href="#" class="col">
-                        <button class="btn btn-success">edit</button>
-                        </a> 
+                <div class="modal fade" id="addshow" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">add show</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="./index.php" method="POST" enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                        <label for="show_name" class="form-label">tv show name</label>
+                                        <input type="text" class="form-control" id="show_name" name="show_name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="director" class="form-label">director</label>
+                                        <input type="text" class="form-control" id="director" name="director" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">description</label>
+                                        <input type="text" class="form-control" id="description" name="description" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="link" class="form-label">trailler link</label>
+                                        <input type="text" class="form-control" id="link" name="link" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="poster" class="form-label">poster</label>
+                                        <input type="file" class="form-control" id="poster" name="poster" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="genre" class="form-label">genre</label>
+                                        <select name="idgenre" id="genre" class="form-select" required>
+                                            <?php foreach ($genres as $element) : ?>
+                                                <option value="<?= $element['idgenre'] ?>"><?= $element['namegenre'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn flex-end" style="background-color: #BA68C8;" name="add_show">Add show</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
                         </div>
                     </div>
-                    <hr>
-                <?php endforeach; ?>
+                </div>
             </div>
-            <div class="col">
-                <h1 class="text-center">Added Shows</h1>
-                <?php foreach ($addedshows as $element) : ?>
-                    <div class="card row flex-center text-center"  style="width: 20rem;margin-left:25%;">
-                        <h5>movie name : <?= $element['name'] ?></h5>
-                        <h5>director : <?= $element['director'] ?></h5>
-                        <h5>genre : <?php donner_genre($element['idgenre'], $db); ?></h5>
-                        <div class="row">
-                        <a href="index.php?id_delete_show=<?= $element['idtvshow']?>" class="col">
-                        <button class="btn btn-danger">delete</button>
-                        </a>
-                            <button class="btn btn-warning col">edit</button>
-                            
+            <div class="row">
+                <div class="col">
+                    <h1 class="text-center">Added Movies</h1>
+                    <?php foreach ($addedmovies as $element) : ?>
+                        <div class="card row flex-center text-center" style="width: 20rem;margin-left:25%;">
+                            <h5>movie name : <?= $element['movie_name'] ?></h5>
+                            <h5>director : <?= $element['director'] ?></h5>
+                            <h5>length : <?= calculer_taille($element['length'])['nbheures'] . ':' . calculer_taille($element['length'])['nbminutes']  ?></h5>
+                            <h5>genre : <?php donner_genre($element['idgenre'], $db); ?></h5>
+                            <div class="row">
+                                <a href="index.php?id_delete_movie=<?= $element['idmovie'] ?>" class="col">
+                                    <button class="btn btn-danger">delete</button>
+                                </a>
+                                <a href="#" class="col">
+                                    <button class="btn btn-success">edit</button>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                        <hr>
+                    <?php endforeach; ?>
+                </div>
+                <div class="col">
+                    <h1 class="text-center">Added Shows</h1>
+                    <?php foreach ($addedshows as $element) : ?>
+                        <div class="card row flex-center text-center" style="width: 20rem;margin-left:25%;">
+                            <h5>movie name : <?= $element['name'] ?></h5>
+                            <h5>director : <?= $element['director'] ?></h5>
+                            <h5>genre : <?php donner_genre($element['idgenre'], $db); ?></h5>
+                            <div class="row">
+                                <a href="index.php?id_delete_show=<?= $element['idtvshow'] ?>" class="col">
+                                    <button class="btn btn-danger">delete</button>
+                                </a>
+                                <button class="btn btn-warning col">edit</button>
+
+                            </div>
+                        </div>
+                        <hr>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
+
+        <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 border-top" style="color: white;">
+            <div class="col mb-3">
+                <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+                    <img src="../assets/images/logoDark-removebg.png" width="100" height="100">
+                </a>
+            </div>
+
+            <div class="col mb-3">
+
+            </div>
+
+            <div class="col mb-3">
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+                </ul>
+            </div>
+            <div class="col mb-3">
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+                </ul>
+            </div>
+            <div class="col mb-3">
+                <h5>socials</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"><i class="bi bi-facebook"></i></a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"> <i class="bi bi-instagram"></i></a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"> <i class="bi bi-github"></i></a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"><i class="bi bi-info-circle"></i></a></li>
+                </ul>
+            </div>
+            <p class="text-muted">HKIMI MOHAMED AMIN &copy; 2022</p>
+        </footer>
     </div>
-    <footer class="row mt-5">
-        <div class="text-muted text-center text-light footer-insight">
-            <div class="">
-                <i class="bi bi-facebook"></i>
-                <i class="bi bi-instagram"></i>
-                <i class="bi bi-github"></i>
-                <i class="bi bi-info-circle"></i>
-            </div>
-            <div class="second-footer">
-                <p> &copy; 2022 made by Hkimi Mohamed Amin <i class="bi bi-linkedin"></i></p>
-            </div>
-        </div>
-    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script src="../assets/script/script.js"></script>
 

@@ -1,6 +1,7 @@
 <?php 
     require_once '../db_connect.php';
     session_start();
+    if(isset($_SESSION['username'])){
     //function to determine the number of hours and the number of minutes outta of number of minutes 
     function calculer_taille($nbminutes){
         $movie['nbheures']=((int)($nbminutes/60)).'h';
@@ -109,3 +110,6 @@
         header('location:index.php?msg=show deleted succesfuly you can find it at your recycle bin where you can delete it premantly or restore it&class=success');
     }
     include './home.phtml';
+}else{
+    header('location:index.php?msg=you have to be loaged in to access this page&class=success');
+}

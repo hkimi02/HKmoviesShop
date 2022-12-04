@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/style/addings.css">
     <style>
-        .main{ 
-            margin-top: 8%!important;
+        .main {
+            margin-top: 8% !important;
         }
     </style>
 </head>
@@ -22,14 +22,14 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-margin background">
             <div class="container-fluid">
-                <a class="navbar-brand" href="../layout.phtml"><img src="../assets/images/logoLight.png" alt="" class="logo"></a>
+                <a class="navbar-brand" href="../layout.phtml"><img src="../assets/images/logoDark-removebg.png" alt="" class="logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../layout.phtml"><span class="material-symbols-outlined text-white">
+                            <a class="nav-link active" aria-current="page" href="../index.php"><span class="material-symbols-outlined text-white">
                                     home
                                 </span></a>
                         </li>
@@ -65,10 +65,21 @@
                             </ul>
                         </li>
                     </ul>
-                    <div class="float-end d-flex">
+                    <div class="float-end d-flex info" style="margin-left: -12%;">
                         <p><?= $_SESSION['username'] ?></p>
-                        <img class="shadow-sm" width="50px" height="50px" src="<?= $_SESSION['avatar'] ?>" alt="" style="border-radius: 50%;">
-                        <a href="../logout/"><button class="btn btn-primary">logout</button></a>
+                        <div class="dropdown text-end">
+                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="<?= $_SESSION['avatar'] ?>" alt="mdo" width="32" height="32" class="rounded-circle">
+                            </a>
+                            <ul class="dropdown-menu text-small">
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="../logout/">Sign out</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -145,35 +156,65 @@
             <div class="row">
                 <div class="col">
                     <h1 class="text-center">employes</h1>
-                    <?php foreach($employes as $element): ?>
-                    <div class="card row text-center" style="width:30rem;height:10rem;">
-                                <h3> name :<?= $element['username'] ?></h3>
-                                <h3>email : <?= $element['email'] ?></h3>
-                                <h3>working since : <?= $element['createdate'] ?></h3>
-                                <h3>stats : <button class="btn btn-primary">show stats</button></h3>
-                                <h3>send email : <a href="mailto:<?= $element['email'] ?>">
-                                <button class="btn btn-primary">send email</button></a></h3>
-                                <h3>delete employe : <button  class="btn btn-danger">delete employee</button></h3>
-                            </div>
-                            <hr>
+                    <?php foreach ($employes as $element) : ?>
+                        <div class="card row text-center" style="width:30rem;height:10rem;">
+                            <h3> name :<?= $element['username'] ?></h3>
+                            <h3>email : <?= $element['email'] ?></h3>
+                            <h3>working since : <?= $element['createdate'] ?></h3>
+                            <h3>stats : <button class="btn btn-primary">show stats</button></h3>
+                            <h3>send email : <a href="mailto:<?= $element['email'] ?>">
+                                    <button class="btn btn-primary">send email</button></a></h3>
+                            <h3>delete employe : <button class="btn btn-danger">delete employee</button></h3>
+                        </div>
+                        <hr>
                     <?php endforeach; ?>
                 </div>
             </div>
         </div>
+
+        <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 border-top" style="color: white;">
+            <div class="col mb-3">
+                <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+                    <img src="../assets/images/logoDark-removebg.png" width="100" height="100">
+                </a>
+            </div>
+
+            <div class="col mb-3">
+
+            </div>
+
+            <div class="col mb-3">
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+                </ul>
+            </div>
+            <div class="col mb-3">
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+                </ul>
+            </div>
+            <div class="col mb-3">
+                <h5>socials</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"><i class="bi bi-facebook"></i></a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"> <i class="bi bi-instagram"></i></a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"> <i class="bi bi-github"></i></a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"><i class="bi bi-info-circle"></i></a></li>
+                </ul>
+            </div>
+            <p class="text-muted">HKIMI MOHAMED AMIN &copy; 2022</p>
+        </footer>
     </div>
-    <footer class="row mt-5">
-        <div class="text-muted text-center text-light footer-insight">
-            <div class="">
-                <i class="bi bi-facebook"></i>
-                <i class="bi bi-instagram"></i>
-                <i class="bi bi-github"></i>
-                <i class="bi bi-info-circle"></i>
-            </div>
-            <div class="second-footer">
-                <p> &copy; 2022 made by Hkimi Mohamed Amin <i class="bi bi-linkedin"></i></p>
-            </div>
-        </div>
-    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script src="../assets/script/script.js"></script>
 
