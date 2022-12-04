@@ -29,7 +29,7 @@
         }
     }
         else{
-            header('location:../layout.phtml?msg=verify you email and password&class=danger');
+            header('location:../index.php?msg=verify you email and password&class=danger');
         }
     }
 ?>

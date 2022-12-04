@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Nerko+One&family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.background {
+    background-color: #BA68C8;
+    position: fixed;
+    width: 99%;
+    top: -3%;
+    margin-left: -7%;
+    z-index: 10;
+}
+
+.main {
+    margin-top: 5%;
+}
+
+footer {
+    background-color: #BA68C8;
+    background-image: none !important;
+    margin-left: -8%!important;
+    margin-bottom: -10%!important;
+    margin-top: 5%!important;
+    width: 115%;
+    height: 18rem!important;
+}
+
+.sign-btn {
+    margin-top: 4%;
+    text-align: center;
+    width: auto!important;
+    margin-left: 40%;
+    background: #BA68C8;
+}
+
+@media screen and (max-width:768px) {}

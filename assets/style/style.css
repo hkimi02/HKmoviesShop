@@ -1,85 +1,64 @@
-        a .logo {
-            width: 60px;
-            height: 60px;
-        }
-        
-        .navbar-margin {
-            margin-top: 1%;
-        }
-        
-        ul li a .text-dropdown {
-            margin-top: -10%;
-        }
-        
-        .text-design {
-            margin-top: 12%;
-            color: #BA68C8;
-        }
-        
-        .sign-btn {
-            margin-top: 4%;
-            text-align: center;
-            margin-left: 40%;
-            width: 6rem;
-            background: #BA68C8;
-        }
-        
-        .first-composant {
-            margin-top: 3%;
-            background-color: #e3b3eb;
-            height: 30rem;
-        }
-        
-        .second-compsant {
-            margin-top: 3%;
-            height: 30rem;
-        }
-        
-        .anim-desc {
-            color: #BA68C8;
-        }
-        
-        .img-design-second:last-child {
-            margin-top: 6%;
-        }
-        
-        .last-one {
-            margin-top: 14%;
-        }
-        
-        footer {
-            background: black;
-        }
-        
-        .first-footer {
-            text-align: right;
-            margin-left: 5%;
-        }
-        
-        footer .btn-comment button {
-            width: 4rem;
-            background: #BA68C8;
-        }
-        
-        .submit-btn {
-            background: #BA68C8;
-        }
-        
-        footer {
-            background: url("../images/logoDark.png") 300px 400px repeat;
-            height: 300px;
-            width: 1531px;
-        }
-        
-        .footer-insight {
-            margin-top: 15%;
-        }
-        
-        footer i {
-            cursor: pointer;
-        }
-        /* @media screen and (max-width:768px) {} */
-        
-        a {
-            text-decoration: none;
-        }
+@import url('https://fonts.googleapis.com/css2?family=Nerko+One&family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+* {
+    font-family: 'Nerko One', cursive;
+}
+
+a .logo {
+    width: 60px;
+    height: 60px;
+}
+
+.navbar-margin {
+    margin-top: 1%;
+}
+
+ul li a .text-dropdown {
+    margin-top: -10%;
+}
+
+.text-design {
+    margin-top: 12%;
+    color: #BA68C8;
+}
+
+.first-composant {
+    margin-top: 3%;
+    background-color: #e3b3eb;
+    height: 30rem;
+}
+
+.second-compsant {
+    margin-top: 3%;
+    height: 30rem;
+}
+
+.anim-desc {
+    color: #BA68C8;
+}
+
+.img-design-second:last-child {
+    margin-top: 6%;
+}
+
+.last-one {
+    margin-top: 14%;
+}
+
+.submit-btn {
+    background: #BA68C8;
+}
+
+
+/* @media screen and (max-width:768px) {} */
+
+a {
+    text-decoration: none;
+}
+
+.background {
+    background-color: #BA68C8!important;
+}
+
+footer {
+    background-color: #BA68C8;
+}
