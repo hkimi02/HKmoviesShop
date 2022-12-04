@@ -40,31 +40,36 @@
     .frem h5 {
       position: absolute;
       bottom: 6rem;
-      color: #9c9c9c;
+      color: #BA68C8;
     }
 
     .frem a {
       position: absolute;
       bottom: 1rem;
-      background: linear-gradient(45deg, #ff0034, #ffbc00);
+      background: linear-gradient(45deg, #BA68C8, #BA68C8);
       padding: 12px;
       color: white;
       text-decoration: none;
       font-size: 23px;
       border-radius: 13px;
     }
+    .submit-btn {
+            background-color: #BA68C8;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background-color: #BA68C8;
+            color: white;
+        }
+
+        .title {
+            color: #BA68C8;
+        }
   </style>
 </head>
 
 <body>
-  <?php if ($verif == false) { ?>
-    <div class="frem">
-      <p>404</p>
-      <h2>Look like you're lost</h2>
-      <h5>the page you are looking for not available</h5>
-      <a href="../index.php">Go to Home</a>
-    </div>
-  <?php } else { ?>
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-margin background rounded">
         <div class="container-fluid">
@@ -102,7 +107,7 @@
                   <li>
                     <hr class="dropdown-divider">
                   </li>
-                  <li><a class="dropdown-item" href="./signUp/"><span class="material-symbols-outlined">
+                  <li><a class="dropdown-item" href="../signUp/"><span class="material-symbols-outlined">
                         person_add
                       </span><span class="text-dropdown">Sign Up</span></a></li>
                   <li>
@@ -117,11 +122,19 @@
           </div>
         </div>
       </nav>
+      <?php if ($verif == false) { ?>
+    <div class="frem">
+      <p>404</p>
+      <h2>Look like you're lost</h2>
+      <h5>the page you are looking for not available</h5>
+      <a href="../index.php">Go to Home</a>
+    </div>
+  <?php } else { ?>
       <div class="main">
         <div class="row">
           <div class="sign-up-user-form col">
             <form class="shadow-lg p-5 rounded col" method="POST" action="./index.php" enctype="multipart/form-data">
-              <h1 class="text-center text-capitalize">welcome fill this form and beacame one of our family</h1>
+              <h1 class="text-center text-capitalize title">welcome fill this form and beacame one of our family</h1>
               <?php if (array_key_exists('msg', $_GET)) : ?>
                 <div class="alert alert-<?= $_GET['class'] ?>">
                   <?= $_GET['msg']; ?>
@@ -147,7 +160,7 @@
                 <label for="avatar" class="form-label"><i class="bi bi-camera-fill" required></i></label>
                 <input type="file" class="form-control" id="avatar" name="avatar">
               </div>
-              <button type="submit" class="btn btn-primary" name="submit">sign up</button>
+              <button type="submit" class="btn submit-btn" name="submit">sign up</button>
             </form>
           </div>
           <div class="col">
@@ -163,7 +176,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form action="" method="POST">
+              <form action="../login/" method="POST">
                 <div class="mb-3">
                   <label for="email" class="form-label">Email address</label>
                   <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
@@ -181,20 +194,50 @@
           </div>
         </div>
       </div>
-    </div>
-    <footer class="row mt-5">
-      <div class="text-muted text-center text-light footer-insight">
-        <div class="">
-          <i class="bi bi-facebook"></i>
-          <i class="bi bi-instagram"></i>
-          <i class="bi bi-github"></i>
-          <i class="bi bi-info-circle"></i>
-        </div>
-        <div class="second-footer">
-          <p> &copy; 2022 made by Hkimi Mohamed Amin <i class="bi bi-linkedin"></i></p>
-        </div>
+  
+    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 border-top" style="color: white;">
+      <div class="col mb-3">
+        <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+          <img src="../assets/images/logoDark-removebg.png" width="100" height="100">
+        </a>
       </div>
+
+      <div class="col mb-3">
+
+      </div>
+
+      <div class="col mb-3">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+        </ul>
+      </div>
+      <div class="col mb-3">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+        </ul>
+      </div>
+      <div class="col mb-3">
+        <h5>socials</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"><i class="bi bi-facebook"></i></a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"> <i class="bi bi-instagram"></i></a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"> <i class="bi bi-github"></i></a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"><i class="bi bi-info-circle"></i></a></li>
+        </ul>
+      </div>
+      <p class="text-muted">HKIMI MOHAMED AMIN &copy; 2022</p>
     </footer>
+    </div>
   <?php } ?>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   <script src="../assets/script/script.js"></script>

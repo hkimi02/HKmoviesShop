@@ -3,7 +3,7 @@ require_once '../db_connect.php';
 use PHPMailer\PHPMailer\PHPMailer;
 include "../send.php";
 $verif=false;
-if(array_key_exists('token',$_GET) && array_key_exists('email',$_GET )&& array_key_exists('idapply',$_GET)){
+if(array_key_exists('token',$_GET) && array_key_exists('email',$_GET ) && array_key_exists('idapply',$_GET)){
 $req=$db->prepare('SELECT * FROM jobrequest WHERE iddemande=:id_apply AND token=:token AND email=:email');
 $req->execute([
     'id_apply'=>$_GET['idapply'],
@@ -89,5 +89,4 @@ if (isset($_POST['submit'])) {
     sendmail('HKmoviesShop', $email, 'Lien de verifiaction', 'lien' . $link . '');
     header('location:../layout.phtml');
 }
-show:
 include './home.phtml';
