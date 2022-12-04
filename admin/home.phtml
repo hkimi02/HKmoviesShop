@@ -106,7 +106,7 @@
                                                 echo 'not accepted ';
                                             } ?></h5>
                                 <div class="d-flex">
-                                    <a href=".<?= $element['cv'] ?>" download="cv <?= $element['name'] ?>"><button class="btn btn-primary">download cv</button></a>
+                                    <a href="<?= $element['cv'] ?>" download="cv <?= $element['name'] ?>"><button class="btn btn-primary">download cv</button></a>
                                     <a href="./index.php?id_apply=<?= $element['iddemande'] ?>&accept=1"><button <?= $element['state'] != 0 ? 'disabled' : '' ?> class="btn btn-success">accept apply</button></a>
                                     <a href="./index.php?id_apply=<?= $element['iddemande'] ?>&refuse=1"><button <?= $element['state'] != 0 ? 'disabled' : '' ?> class="btn btn-danger">refuse </button></a>
                                 </div>
