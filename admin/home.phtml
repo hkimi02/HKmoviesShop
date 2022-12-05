@@ -15,6 +15,154 @@
         .main {
             margin-top: 8% !important;
         }
+
+        .active {
+            background-color: #BA68C8 !important;
+        }
+
+        .show {
+            background-color: #fff !important;
+        }
+
+        .navlink {
+            background-color: #fff !important;
+        }
+
+        .main {
+            margin-left: -6% !important;
+        }
+
+        .main .insights>div {
+            background: #fff;
+            padding: 1.8rem;
+            border-radius: 2rem;
+            margin-top: 1rem;
+            box-shadow: 0 2rem 3rem lightgray;
+            transition: all 300ms ease;
+        }
+        .insights{
+            gap: 10%;
+        }
+        .main .insights>div:hover {
+            box-shadow: 0 1rem 2rem whitesmoke;
+        }
+
+        .main .insights>div span {
+            background: #7380ec;
+            padding: 0.5rem;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 2rem;
+        }
+
+        .main .insights>div.expenses span {
+            background-color: #ff7782;
+        }
+
+        .main .insights>div.income span {
+            background-color: #41f1b6;
+        }
+
+        .main .insights>div .middle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .main .insights h3 {
+            margin: 1rem 0 0.6rem;
+            font-size: 1rem;
+        }
+
+        .main .insights .progress {
+            position: relative;
+            width: 92px;
+            height: 92px;
+            border-radius: 50%;
+        }
+
+        .main .insights svg {
+            width: 7rem;
+            height: 7rem;
+        }
+
+        .main .insights svg circle {
+            fill: none;
+            stroke: #7380ec;
+            stroke-width: 14;
+            stroke-linecap: round;
+            transform: translate(5px, 5px);
+            stroke-dasharray: 110;
+            stroke-dashoffset: 92;
+        }
+
+        .main .insights .sales svg circle {
+            stroke-dashoffset: -30;
+            stroke-dasharray: 400;
+        }
+
+        .main .insights .expenses svg circle {
+            stroke-dashoffset: 20;
+            stroke-dasharray: 80;
+        }
+
+        .main .insights .income svg circle {
+            stroke-dashoffset: 35;
+            stroke-dasharray: 110;
+        }
+
+        .main .insights .progress .number {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*margin-left: 29px;*/
+        }
+
+        .main.insights small {
+            margin-top: 1.3rem;
+            display: block;
+        }
+
+        .tab-content {
+            margin-left: 5% !important;
+        }
+        table {
+    background: #fff;
+    width: 100%;
+    border-radius: 2rem;
+    text-align: center;
+    padding: 1.8rem;
+    box-shadow: 0 2rem 3rem lightgrey;
+    transition: all 300ms ease;
+}
+table tbody td {
+    height: 2.8rem;
+    border-bottom: 1px solid black;
+    color: #677483;
+}
+table tbody tr:last-child td {
+    border: none;
+}
+table {
+        width: 83vw;
+    }
+    table thead tr th:last-child,
+    table thead tr th:first-child {
+        display: none;
+    }
+    table tbody tr td:last-child,
+    table tbody tr td:first-child {
+        display: none;
+    }
+    table {
+        width: 100%;
+        margin: 0;
+    }
     </style>
 </head>
 
@@ -153,21 +301,146 @@
             </div>
         </div>
         <div class="main">
-            <div class="row">
-                <div class="col">
-                    <h1 class="text-center">employes</h1>
-                    <?php foreach ($employes as $element) : ?>
-                        <div class="card row text-center" style="width:30rem;height:10rem;">
-                            <h3> name :<?= $element['username'] ?></h3>
-                            <h3>email : <?= $element['email'] ?></h3>
-                            <h3>working since : <?= $element['createdate'] ?></h3>
-                            <h3>stats : <button class="btn btn-primary">show stats</button></h3>
-                            <h3>send email : <a href="mailto:<?= $element['email'] ?>">
-                                    <button class="btn btn-primary">send email</button></a></h3>
-                            <h3>delete employe : <button class="btn btn-danger">delete employee</button></h3>
+            <div class="d-flex align-items-start">
+                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"><span class="material-symbols-outlined">
+                            grid_view
+                        </span></button>
+                    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><span class="material-symbols-outlined">
+                            badge
+                        </span></button>
+                    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"><span class="material-symbols-outlined">
+                            query_stats
+                        </span></button>
+                </div>
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
+                        <div class="insights row">
+                            <div class="sales col">
+                                <span class="material-symbols-outlined">
+                                    movie
+                                </span>
+                                <div class="middle">
+                                    <div class="left">
+                                        <h3>number of movies and shows</h3>
+                                        <h1><?= products_number($db) ?></h1>
+                                    </div>
+                                    <div class="progress">
+                                        <svg>
+                                            <circle cx="38" cy="38" r="36"></circle>
+                                        </svg>
+                                        <div class="number">
+                                            <p>50%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <small class="text-muted">all time</small>
+                            </div>
+                            <div class="expenses col">
+                                <span class=" material-symbols-outlined ">
+                                    person
+                                </span>
+                                <div class="middle ">
+                                    <div class="left ">
+                                        <h3>number of users</h3>
+                                        <h1><?= total_users($db) ?></h1>
+                                    </div>
+                                    <div class="progress ">
+                                        <svg>
+                                            <circle cx="38 " cy="38 " r="36 "></circle>
+                                        </svg>
+                                        <div class="number ">
+                                            <p>62%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <small class="text-muted">all time</small>
+                            </div>
+                            <div class="income col">
+                                <span class="material-symbols-outlined">
+                                    work
+                                </span>
+                                <div class="middle ">
+                                    <div class="left ">
+                                        <h3>number of employees</h3>
+                                        <h1><?= total_employes($db) ?></h1>
+                                    </div>
+                                    <div class="progress ">
+                                        <svg>
+                                            <circle cx="38 " cy="38 " r="36 "></circle>
+                                        </svg>
+                                        <div class="number ">
+                                            <p>15%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <small class="text-muted">all time</small>
+                            </div>
+                            <div class="income col">
+                                <span class="material-symbols-outlined">
+                                    movie
+                                </span>
+                                <div class="middle ">
+                                    <div class="left ">
+                                        <h3>number of shows</h3>
+                                        <h1><?= shows_number($db) ?></h1>
+                                    </div>
+                                    <div class="progress ">
+                                        <svg>
+                                            <circle cx="38 " cy="38 " r="36 "></circle>
+                                        </svg>
+                                        <div class="number ">
+                                            <p>15%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <small class="text-muted">all time</small>
+                            </div>
+                            <div class="income col">
+                                <span class="material-symbols-outlined">
+                                    movie
+                                </span>
+                                <div class="middle ">
+                                    <div class="left ">
+                                        <h3>number of movies</h3>
+                                        <h1><?= total_employes($db) ?></h1>
+                                    </div>
+                                    <div class="progress ">
+                                        <svg>
+                                            <circle cx="38 " cy="38 " r="36 "></circle>
+                                        </svg>
+                                        <div class="number ">
+                                            <p>15%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <small class="text-muted">all time</small>
+                            </div>
                         </div>
-                        <hr>
-                    <?php endforeach; ?>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
+                    <table>
+                    <thead>
+                        <th>name</th>
+                        <th>email</th>
+                        <th>experience</th>
+                        <th>cv </th>
+                        <th>details </th>
+                    </thead>
+                    <tbody>
+                        <?php foreach($employes as $element){ ?>
+                        <tr>
+                            <td>code it up 2.0</td>
+                            <td>8000$</td>
+                            <td>Due</td>
+                            <td class="warning">pending</td>
+                            <td class="primary">aaa</td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">...</div>
                 </div>
             </div>
         </div>

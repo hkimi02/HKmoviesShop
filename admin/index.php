@@ -3,6 +3,36 @@
     use PHPMailer\PHPMailer\PHPMailer;
     include "../send.php";
     session_start();
+    function products_number($db){
+        $req=$db->prepare("SELECT count(movies.idmovie) as nb_movie,count(tvshows.idtvshow) as nb_shows FROM movies,tvshows");
+        $req->execute();
+        $res=$req->fetch();
+        return $res['nb_movie']+$res['nb_shows'];
+    }
+    function shows_number($db){
+        $req=$db->prepare("SELECT count(movies.idmovie) as nb_movie,count(tvshows.idtvshow) as nb_shows FROM movies,tvshows");
+        $req->execute();
+        $res=$req->fetch();
+        return $res['nb_movie'];
+    }
+    function movies_number($db){
+        $req=$db->prepare("SELECT count(movies.idmovie) as nb_movie,count(tvshows.idtvshow) as nb_shows FROM movies,tvshows");
+        $req->execute();
+        $res=$req->fetch();
+        return $res['nb_movie'];
+    }
+    function total_users($db){
+        $req=$db->prepare("SELECT count(iduser) as nb_user FROM users");
+        $req->execute();
+        $res=$req->fetch();
+        return $res['nb_user'];
+    }
+    function total_employes($db){
+        $req=$db->prepare("SELECT count(iduser) as nb_employe FROM users where isEmploye=1");
+        $req->execute();
+        $res=$req->fetch();
+        return $res['nb_employe'];
+    }
     if(isset($_SESSION['username'])){
     //en cours demandes
     $req=$db->prepare('SELECT * FROM jobrequest WHERE STATE=0'); 
