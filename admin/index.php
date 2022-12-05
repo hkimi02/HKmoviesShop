@@ -37,11 +37,16 @@
     //en cours demandes
     $req=$db->prepare('SELECT * FROM jobrequest WHERE STATE=0'); 
     $req->execute();
-    $encours=$req->fetchAll();
+    $pending=$req->fetchAll();
     //declined deamndes
     $req=$db->prepare('SELECT * FROM jobrequest WHERE STATE=2'); 
     $req->execute();
     $declined=$req->fetchAll();
+    //all job requests
+      //declined deamndes
+      $req=$db->prepare('SELECT * FROM jobrequest'); 
+      $req->execute();
+      $requests=$req->fetchAll();
     //employees 
     $req=$db->prepare('SELECT * FROM users WHERE isEmploye=:isemploye');
     $req->execute(['isemploye'=>1]);

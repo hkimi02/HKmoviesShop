@@ -11,159 +11,7 @@
     <link rel="stylesheet" href="../assets/style/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/style/addings.css">
-    <style>
-        .main {
-            margin-top: 8% !important;
-        }
-
-        .active {
-            background-color: #BA68C8 !important;
-        }
-
-        .show {
-            background-color: #fff !important;
-        }
-
-        .navlink {
-            background-color: #fff !important;
-        }
-
-        .main {
-            margin-left: -6% !important;
-        }
-
-        .main .insights>div {
-            background: #fff;
-            padding: 1.8rem;
-            border-radius: 2rem;
-            margin-top: 1rem;
-            box-shadow: 0 2rem 3rem lightgray;
-            transition: all 300ms ease;
-        }
-        .insights{
-            gap: 10%;
-        }
-        .main .insights>div:hover {
-            box-shadow: 0 1rem 2rem whitesmoke;
-        }
-
-        .main .insights>div span {
-            background: #7380ec;
-            padding: 0.5rem;
-            border-radius: 50%;
-            color: #fff;
-            font-size: 2rem;
-        }
-
-        .main .insights>div.expenses span {
-            background-color: #ff7782;
-        }
-
-        .main .insights>div.income span {
-            background-color: #41f1b6;
-        }
-
-        .main .insights>div .middle {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .main .insights h3 {
-            margin: 1rem 0 0.6rem;
-            font-size: 1rem;
-        }
-
-        .main .insights .progress {
-            position: relative;
-            width: 92px;
-            height: 92px;
-            border-radius: 50%;
-        }
-
-        .main .insights svg {
-            width: 7rem;
-            height: 7rem;
-        }
-
-        .main .insights svg circle {
-            fill: none;
-            stroke: #7380ec;
-            stroke-width: 14;
-            stroke-linecap: round;
-            transform: translate(5px, 5px);
-            stroke-dasharray: 110;
-            stroke-dashoffset: 92;
-        }
-
-        .main .insights .sales svg circle {
-            stroke-dashoffset: -30;
-            stroke-dasharray: 400;
-        }
-
-        .main .insights .expenses svg circle {
-            stroke-dashoffset: 20;
-            stroke-dasharray: 80;
-        }
-
-        .main .insights .income svg circle {
-            stroke-dashoffset: 35;
-            stroke-dasharray: 110;
-        }
-
-        .main .insights .progress .number {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /*margin-left: 29px;*/
-        }
-
-        .main.insights small {
-            margin-top: 1.3rem;
-            display: block;
-        }
-
-        .tab-content {
-            margin-left: 5% !important;
-        }
-        table {
-    background: #fff;
-    width: 100%;
-    border-radius: 2rem;
-    text-align: center;
-    padding: 1.8rem;
-    box-shadow: 0 2rem 3rem lightgrey;
-    transition: all 300ms ease;
-}
-table tbody td {
-    height: 2.8rem;
-    border-bottom: 1px solid black;
-    color: #677483;
-}
-table tbody tr:last-child td {
-    border: none;
-}
-table {
-        width: 83vw;
-    }
-    table thead tr th:last-child,
-    table thead tr th:first-child {
-        display: none;
-    }
-    table tbody tr td:last-child,
-    table tbody tr td:first-child {
-        display: none;
-    }
-    table {
-        width: 100%;
-        margin: 0;
-    }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -186,120 +34,25 @@ table {
                                     movie
                                 </span></a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link"><span class="material-symbols-outlined text-white">
-                                    badge
-                                </span></a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="material-symbols-outlined text-white">
-                                    request_page
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="material-symbols-outlined">
-                                            pending
-                                        </span><span class="text-dropdown">pending requests</span></a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#declined"><span class="material-symbols-outlined">
-                                            delete
-                                        </span><span class="text-dropdown">deleted demands</span></a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                     <div class="float-end d-flex info" style="margin-left: -12%;">
-                        <p><?= $_SESSION['username'] ?></p>
                         <div class="dropdown text-end">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="<?= $_SESSION['avatar'] ?>" alt="mdo" width="32" height="32" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu text-small">
                                 <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="../logout/">Sign out</a></li>
                             </ul>
                         </div>
+                        <p><?= $_SESSION['username'] ?></p>
                     </div>
                 </div>
             </div>
         </nav>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">job demandes</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <?php foreach ($encours as $element) { ?>
-                            <div class="demande card col">
-                                <h3>name : <?= $element['name'] ?></h3>
-                                <h3>email : <?= $element['email'] ?></h3>
-                                <h3>experince : <?= $element['experience'] == 1 ? 'yes' : 'no' ?></h3>
-                                <h5>state : <?php
-                                            if ($element['state'] == 0) {
-                                                echo 'en cours';
-                                            } else if ($element['state'] == 1) {
-                                                echo 'accepted';
-                                            } else {
-                                                echo 'not accepted ';
-                                            } ?></h5>
-                                <div class="d-flex">
-                                    <a href="<?= $element['cv'] ?>" download="cv <?= $element['name'] ?>"><button class="btn btn-primary">download cv</button></a>
-                                    <a href="./index.php?id_apply=<?= $element['iddemande'] ?>&accept=1"><button <?= $element['state'] != 0 ? 'disabled' : '' ?> class="btn btn-success">accept apply</button></a>
-                                    <a href="./index.php?id_apply=<?= $element['iddemande'] ?>&refuse=1"><button <?= $element['state'] != 0 ? 'disabled' : '' ?> class="btn btn-danger">refuse </button></a>
-                                </div>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <div class="modal-footer">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="declined" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">job demandes</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <?php foreach ($declined as $element) { ?>
-                            <div class="demande card col">
-                                <h3>name : <?= $element['name'] ?></h3>
-                                <h3>email : <?= $element['email'] ?></h3>
-                                <h3>experince : <?= $element['experience'] == 1 ? 'yes' : 'no' ?></h3>
-                                <h5>state : <?php
-                                            if ($element['state'] == 0) {
-                                                echo 'en cours';
-                                            } else if ($element['state'] == 1) {
-                                                echo 'accepted';
-                                            } else {
-                                                echo 'not accepted ';
-                                            } ?></h5>
-                                <div class="d-flex">
-                                    <a href=".<?= $element['cv'] ?>" download="cv <?= $element['name'] ?>"><button class="btn btn-primary">download cv</button></a>
-                                    <a href="./index.php?id_apply=<?= $element['iddemande'] ?>&accept=1"><button <?= $element['state'] != 0 ? 'disabled' : '' ?> class="btn btn-success">accept apply</button></a>
-                                    <a href="./index.php?id_apply=<?= $element['iddemande'] ?>&refuse=1"><button <?= $element['state'] != 0 ? 'disabled' : '' ?> class="btn btn-danger">refuse </button></a>
-                                </div>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <div class="modal-footer">
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="main">
             <div class="d-flex align-items-start">
                 <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -307,14 +60,17 @@ table {
                             grid_view
                         </span></button>
                     <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><span class="material-symbols-outlined">
-                            badge
+                            pending
                         </span></button>
                     <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"><span class="material-symbols-outlined">
-                            query_stats
+                            delete
+                        </span></button>
+                    <button class="nav-link" id="v-pills-employes-tab" data-bs-toggle="pill" data-bs-target="#v-pills-employes" type="button" role="tab" aria-controls="v-pills-employes" aria-selected="false"><span class="material-symbols-outlined">
+                            badge
                         </span></button>
                 </div>
                 <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
+                    <div class="tab-pane fade show active tab-bg" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
                         <div class="insights row">
                             <div class="sales col">
                                 <span class="material-symbols-outlined">
@@ -418,44 +174,136 @@ table {
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
-                    <table>
-                    <thead>
-                        <th>name</th>
-                        <th>email</th>
-                        <th>experience</th>
-                        <th>cv </th>
-                        <th>details </th>
-                    </thead>
-                    <tbody>
-                        <?php foreach($employes as $element){ ?>
-                        <tr>
-                            <td>code it up 2.0</td>
-                            <td>8000$</td>
-                            <td>Due</td>
-                            <td class="warning">pending</td>
-                            <td class="primary">aaa</td>
-                        </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                    <div class="tab-pane fade tab-bg" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
+                        <table>
+                            <thead>
+                                <th>name</th>
+                                <th>email</th>
+                                <th>experience</th>
+                                <th>cv</th>
+                                <th>details </th>
+                                <th>state</th>
+                                <th>operation</th>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($pending as $element) { ?>
+                                    <tr>
+                                        <td><?= $element['name'] ?></td>
+                                        <td><a href="mailto:<?= $element['email'] ?>"><?= $element['email'] ?></a></td>
+                                        <td><?= $element['experience'] == 1 ? 'yes' : 'no' ?></td>
+                                        <td><a href=".<?= $element['cv'] ?>" download="<?= $element['name'] ?>" class="btn active"><span class="material-symbols-outlined" style="color: white;">
+                                                    download
+                                                </span></a></td>
+                                        <td class="primary"><button class="btn active" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="material-symbols-outlined" style="color: white;">
+                                                    visibility
+                                                </span></button></td>
+                                        <td class="primary"><span class="badge active">pending</span></td>
+                                        <td class="primary">
+                                            <a href="./index.php?id_apply=<?= $element['iddemande'] ?>&accept=1"><button <?= $element['state'] != 0 ? 'disabled' : '' ?> class="btn btn-success"><span class="material-symbols-outlined">done_all</span></button></a>
+                                            <a href="./index.php?id_apply=<?= $element['iddemande'] ?>&refuse=1"><button <?= $element['state'] != 0 ? 'disabled' : '' ?> class="btn btn-danger"><span class="material-symbols-outlined">
+                                                        block
+                                                    </span></button></a>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">job demandes</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <?= $element['description']; ?>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">...</div>
+                    <div class="tab-pane fade tab-bg" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">
+                        <table>
+                            <thead>
+                                <th>name</th>
+                                <th>email</th>
+                                <th>experience</th>
+                                <th>cv</th>
+                                <th>details </th>
+                                <th>state</th>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($declined as $element) { ?>
+                                    <tr>
+                                        <td><?= $element['name'] ?></td>
+                                        <td><a href="mailto:<?= $element['email'] ?>"><?= $element['email'] ?></a></td>
+                                        <td><?= $element['experience'] == 1 ? 'yes' : 'no' ?></td>
+                                        <td><a href=".<?= $element['cv'] ?>" download="<?= $element['name'] ?>" class="btn active"><span class="material-symbols-outlined" style="color: white;">
+                                                    download
+                                                </span></a></td>
+                                        <td class="primary"><button class="btn active" data-bs-toggle="modal" data-bs-target="#declined"><span class="material-symbols-outlined" style="color: white;">
+                                                    visibility
+                                                </span></button></td>
+                                        <td class="primary"><span class="badge active">declined</span></td>
+                                        <td>
+                                        </td>
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5 text-center" id="declined">declined requests</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <?= $element['description']; ?>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade tab-bg" id="v-pills-employes" role="tabpanel" aria-labelledby="v-pills-employes-tab" tabindex="0">
+                        <div class="row">
+                    <?php foreach ($employes as $element) { ?>
+                                <div class="card mb-3 col">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="<?= $element['avatar'] ?>" class="img-fluid rounded-start" alt="employe image" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?= $element['username'] ?></h5>
+                                                <p class="card-text">
+                                                <p class="fw-light"><a href="<?= $element['email'] ?>"><?= $element['email'] ?></a></p>
+                                                <p class="text-muted">working since : <?= $element['createdate'] ?></p>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                        </div>
+                        </div>
                 </div>
             </div>
         </div>
-
         <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 border-top" style="color: white;">
             <div class="col mb-3">
                 <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
                     <img src="../assets/images/logoDark-removebg.png" width="100" height="100">
                 </a>
             </div>
-
             <div class="col mb-3">
-
             </div>
-
             <div class="col mb-3">
                 <h5>Section</h5>
                 <ul class="nav flex-column">

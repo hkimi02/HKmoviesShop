@@ -1,0 +1,141 @@
+.main {
+    margin-top: 8% !important;
+}
+
+.active {
+    background-color: #BA68C8 !important;
+}
+
+.tab-bg {
+    background-color: #fff !important;
+}
+
+.main {
+    margin-left: -6% !important;
+}
+
+.main .insights>div {
+    background: #fff;
+    padding: 1.8rem;
+    border-radius: 2rem;
+    margin-top: 1rem;
+    box-shadow: 0 2rem 3rem lightgray;
+    transition: all 300ms ease;
+}
+
+.insights {
+    gap: 10%;
+}
+
+.main .insights>div:hover {
+    box-shadow: 0 1rem 2rem whitesmoke;
+}
+
+.main .insights>div span {
+    background: #7380ec;
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 2rem;
+}
+
+.main .insights>div.expenses span {
+    background-color: #ff7782;
+}
+
+.main .insights>div.income span {
+    background-color: #41f1b6;
+}
+
+.main .insights>div .middle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main .insights h3 {
+    margin: 1rem 0 0.6rem;
+    font-size: 1rem;
+}
+
+.main .insights .progress {
+    position: relative;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+}
+
+.main .insights svg {
+    width: 7rem;
+    height: 7rem;
+}
+
+.main .insights svg circle {
+    fill: none;
+    stroke: #7380ec;
+    stroke-width: 14;
+    stroke-linecap: round;
+    transform: translate(5px, 5px);
+    stroke-dasharray: 110;
+    stroke-dashoffset: 92;
+}
+
+.main .insights .sales svg circle {
+    stroke-dashoffset: -30;
+    stroke-dasharray: 400;
+}
+
+.main .insights .expenses svg circle {
+    stroke-dashoffset: 20;
+    stroke-dasharray: 80;
+}
+
+.main .insights .income svg circle {
+    stroke-dashoffset: 35;
+    stroke-dasharray: 110;
+}
+
+.main .insights .progress .number {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*margin-left: 29px;*/
+}
+
+.main.insights small {
+    margin-top: 1.3rem;
+    display: block;
+}
+
+.tab-content {
+    margin-left: 5% !important;
+}
+
+table {
+    background: #fff;
+    width: 100%;
+    border-radius: 2rem;
+    text-align: center;
+    padding: 1.8rem;
+    box-shadow: 0 2rem 3rem lightgrey;
+    transition: all 300ms ease;
+}
+
+table tbody td {
+    height: 2.8rem;
+    border-bottom: 1px solid black;
+    color: #677483;
+}
+
+table tbody tr:last-child td {
+    border: none;
+}
+
+table {
+    width: 83vw;
+}
