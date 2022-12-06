@@ -10,13 +10,13 @@
         return $res['nb_movie']+$res['nb_shows'];
     }
     function shows_number($db){
-        $req=$db->prepare("SELECT count(movies.idmovie) as nb_movie,count(tvshows.idtvshow) as nb_shows FROM movies,tvshows");
+        $req=$db->prepare("SELECT count(tvshows.idtvshow) as nb_shows FROM tvshows");
         $req->execute();
         $res=$req->fetch();
-        return $res['nb_movie'];
+        return $res['nb_shows'];
     }
     function movies_number($db){
-        $req=$db->prepare("SELECT count(movies.idmovie) as nb_movie,count(tvshows.idtvshow) as nb_shows FROM movies,tvshows");
+        $req=$db->prepare("SELECT count(movies.idmovie) as nb_movie FROM movies");
         $req->execute();
         $res=$req->fetch();
         return $res['nb_movie'];
