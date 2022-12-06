@@ -1,5 +1,21 @@
 <?php 
     require_once '../db_connect.php';
+    
+        function shows_number($db){
+            $req=$db->prepare("SELECT count(tvshows.idtvshow) as nb_shows FROM tvshows WHERE idemploye=:id_show");
+            $req->execute(['id_show'=>$_SESSION['iduser']]);
+            $res=$req->fetch();
+            return $res['nb_shows'];
+        }
+        function movies_number($db){
+            $req=$db->prepare("SELECT count(movies.idmovie) as nb_movie FROM movies WHERE idemploye=:id");
+            $req->execute(['id'=>$_SESSION['iduser']]);
+            $res=$req->fetch();
+            return $res['nb_movie'];
+        }   
+        function products_number($db){
+            return movies_number($db)+shows_number($db);
+        }
     session_start();
     if(isset($_SESSION['username'])){
     //function to determine the number of hours and the number of minutes outta of number of minutes 

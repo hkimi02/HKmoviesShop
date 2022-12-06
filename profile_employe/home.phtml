@@ -11,13 +11,14 @@
     <link rel="stylesheet" href="../assets/style/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/style/addings.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-margin background rounded">
+        <nav class="navbar navbar-expand-lg navbar-margin background">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="../assets/images/logoDark-removebg.png" alt="" class="logo"></a>
+                <a class="navbar-brand" href="../layout.phtml"><img src="../assets/images/logoDark-removebg.png" alt="" class="logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -33,47 +34,21 @@
                                     movie
                                 </span></a>
                         </li>
-                        <li class="nav-item">
-                            <a href="../applyjob/" class="nav-link"><span class="material-symbols-outlined text-white">
-                                    badge
-                                </span></a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="material-symbols-outlined text-white">
-                                    manage_accounts
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="material-symbols-outlined">
-                                            login
-                                        </span><span class="text-dropdown">login</span></a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="./signUp/"><span class="material-symbols-outlined">
-                                            person_add
-                                        </span><span class="text-dropdown">Sign Up</span></a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
-                    <div class="info" style="margin-left: -12%;">
-                        <p><?= $_SESSION['username'] ?></p>
+                    <div class="float-end d-flex info" style="margin-left: -12%;">
                         <div class="dropdown text-end">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src=".<?= $_SESSION['avatar'] ?>" alt="mdo" width="32" height="32" class="rounded-circle">
+                                <img src="<?= $_SESSION['avatar'] ?>" alt="mdo" width="32" height="32" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu text-small">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-gear-fill"></i></a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="../logout/"><i class="bi bi-door-closed-fill"></i></a></li>
+                                <li><a class="dropdown-item" href="../logout/">Sign out</a></li>
                             </ul>
                         </div>
+                        <p><?= $_SESSION['username'] ?></p>
                     </div>
                 </div>
             </div>
@@ -85,6 +60,116 @@
                         <?= $_GET['msg']; ?>
                     </div>
                 <?php endif; ?>
+            </div>
+            <div class="d-flex align-items-start">
+                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"><span class="material-symbols-outlined">
+                            grid_view
+                        </span></button>
+                    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><span class="material-symbols-outlined">
+                            pending
+                        </span></button>
+                    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"><span class="material-symbols-outlined">
+                            delete
+                        </span></button>
+                    <button class="nav-link" id="v-pills-employes-tab" data-bs-toggle="pill" data-bs-target="#v-pills-employes" type="button" role="tab" aria-controls="v-pills-employes" aria-selected="false"><span class="material-symbols-outlined">
+                            badge
+                        </span></button>
+                </div>
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active tab-bg" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
+                        <div class="insights row">
+                            <div class="sales col">
+                                <span class="material-symbols-outlined">
+                                    movie
+                                </span>
+                                <div class="middle">
+                                    <div class="left">
+                                        <h3>number of movies and shows</h3>
+                                        <h1><?= products_number($db) ?></h1>
+                                    </div>
+                                    <div class="progress">
+                                        <svg>
+                                            <circle cx="38" cy="38" r="36"></circle>
+                                        </svg>
+                                        <div class="number">
+                                            <p>50%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <small class="text-muted">all time</small>
+                            </div>
+                            <div class="income col">
+                                <span class="material-symbols-outlined">
+                                    movie
+                                </span>
+                                <div class="middle ">
+                                    <div class="left ">
+                                        <h3>number of shows</h3>
+                                        <h1><?=shows_number($db)?></h1>
+                                    </div>
+                                    <div class="progress ">
+                                        <svg>
+                                            <circle cx="38 " cy="38 " r="36 "></circle>
+                                        </svg>
+                                        <div class="number ">
+                                            <p>15%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <small class="text-muted">all time</small>
+                            </div>
+                            <div class="income col">
+                                <span class="material-symbols-outlined">
+                                    movie
+                                </span>
+                                <div class="middle ">
+                                    <div class="left ">
+                                        <h3>number of movies</h3>
+                                        <h1><?= movies_number($db) ?></h1>
+                                    </div>
+                                    <div class="progress ">
+                                        <svg>
+                                            <circle cx="38 " cy="38 " r="36 "></circle>
+                                        </svg>
+                                        <div class="number ">
+                                            <p>15%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <small class="text-muted">all time</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade tab-bg" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
+
+                    </div>
+                    <div class="tab-pane fade tab-bg" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">
+
+                    </div>
+                    <div class="tab-pane fade tab-bg" id="v-pills-employes" role="tabpanel" aria-labelledby="v-pills-employes-tab" tabindex="0">
+                        <!-- <div class="row">
+                            <?php foreach ($employes as $element) { ?>
+                                <div class="card mb-3 col">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="<?= $element['avatar'] ?>" class="img-fluid rounded-start" alt="employe image" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?= $element['username'] ?></h5>
+                                                <p class="card-text">
+                                                <p class="fw-light"><a href="<?= $element['email'] ?>"><?= $element['email'] ?></a></p>
+                                                <p class="text-muted">working since : <?= $element['createdate'] ?></p>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div> -->
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col" style="margin-left: 20%;"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
