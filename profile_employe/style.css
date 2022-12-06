@@ -139,3 +139,50 @@ table tbody tr:last-child td {
 table {
     width: 83vw;
 }
+
+.image {
+    width: 10rem;
+    position: relative;
+}
+
+.image--img {
+    display: flex;
+    width: 100%;
+}
+
+.image--overplay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.image--description {
+    font-size: 1.25em;
+    margin-top: 0.25em;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.image--overplay:hover {
+    opacity: 1;
+}
+
+.btn-poster {
+    border-radius: 50%;
+    background: transparent;
+}
+
+.btn-poster:hover {
+    background: #BA68C8;
+}
