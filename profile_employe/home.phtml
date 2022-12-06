@@ -67,13 +67,13 @@
                             grid_view
                         </span></button>
                     <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><span class="material-symbols-outlined">
-                            pending
+                            movie_filter
+                        </span></button>
+                    <button class="nav-link" id="v-pills-employes-tab" data-bs-toggle="pill" data-bs-target="#v-pills-employes" type="button" role="tab" aria-controls="v-pills-employes" aria-selected="false"><span class="material-symbols-outlined">
+                            live_tv
                         </span></button>
                     <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"><span class="material-symbols-outlined">
                             delete
-                        </span></button>
-                    <button class="nav-link" id="v-pills-employes-tab" data-bs-toggle="pill" data-bs-target="#v-pills-employes" type="button" role="tab" aria-controls="v-pills-employes" aria-selected="false"><span class="material-symbols-outlined">
-                            badge
                         </span></button>
                 </div>
                 <div class="tab-content" id="v-pills-tabContent">
@@ -106,7 +106,7 @@
                                 <div class="middle ">
                                     <div class="left ">
                                         <h3>number of shows</h3>
-                                        <h1><?=shows_number($db)?></h1>
+                                        <h1><?= shows_number($db) ?></h1>
                                     </div>
                                     <div class="progress ">
                                         <svg>
@@ -142,179 +142,264 @@
                         </div>
                     </div>
                     <div class="tab-pane fade tab-bg" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
-
+                        <div class="row">
+                            <button type="button" class="btn btn-primary" data-bs-target="#exampleModal" data-bs-toggle="modal">
+                                Add movie
+                            </button>
+                            <h1 class="text-center">Added Movies</h1>
+                            <?php foreach ($addedmovies as $element) : ?>
+                                <div class="card col flex-center text-center" style="width: 10rem;margin-left:15%;">
+                                    <h5>movie name : <?= $element['movie_name'] ?></h5>
+                                    <h5>director : <?= $element['director'] ?></h5>
+                                    <h5>length : <?= calculer_taille($element['length'])['nbheures'] . ':' . calculer_taille($element['length'])['nbminutes']  ?></h5>
+                                    <h5>genre : <?php donner_genre($element['idgenre'], $db); ?></h5>
+                                    <div class="row">
+                                        <a href="index.php?id_delete_movie=<?= $element['idmovie'] ?>" class="col">
+                                            <button class="btn btn-danger">delete</button>
+                                        </a>
+                                        <a href="#" class="col">
+                                            <button class="btn btn-success">edit</button>
+                                        </a>
+                                    </div>
+                                </div>
+                                <hr>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                     <div class="tab-pane fade tab-bg" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">
+                        <table>
+                            <h1 class="text-center">deleted movies</h1>
+                            <thead>
+                                <th>name</th>
+                                <th>director</th>
+                                <th>length</th>
+                                <th>watch trailler</th>
+                                <th>details</th>
+                                <th>state </th>
+                                <th>genre</th>
+                                <th>operation</th>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($deletedmovies as $element) { ?>
+                                    <tr>
+                                        <td><?= $element['movie_name'] ?></td>
+                                        <td><?= $element['director'] ?></td>
+                                        <td><?= calculer_taille($element['length'])['nbheures'] . ':' . calculer_taille($element['length'])['nbminutes'] ?></td>
+                                        <td><a href="<?= $element['link']  ?>" download="" class="btn active"><span class="material-symbols-outlined" style="color: white;">
+                                                    <span class="material-symbols-outlined">
+                                                        play_arrow
+                                                    </span>
+                                                </span></a></td>
+                                        <td class="primary"><button class="btn active" data-bs-toggle="modal" data-bs-target="#declined"><span class="material-symbols-outlined" style="color: white;">
+                                                    visibility
+                                                </span></button></td>
+                                        <td class="primary"><span class="badge active">deleted</span></td>
+                                        <td>
+                                            <span class="badge active">
+                                                <?= donner_genre($element['idmovie'], $db) ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="index.php?id_restore_movie=<?= $element['idmovie'] ?>"><button class="btn active text-white"><span class="material-symbols-outlined">
+                                                    settings_backup_restore
+                                                </span></button></a>
+                                        </td>
+                                        <div class="modal fade" id="declined" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5 text-center" id="declined">declined requests</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <?= $element['description'] ?>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                        <br>
+                        <br>
+                        <table>
+                            <h1 class="text-center">deleted shows</h1>
+                            <thead>
+                                <th>name</th>
+                                <th>director</th>
+                                <th>watch trailler</th>
+                                <th>details</th>
+                                <th>state </th>
+                                <th>genre</th>
+                                <th>operation</th>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($deletedshows as $element) { ?>
+                                    <tr>
+                                        <td><?= $element['name'] ?></td>
+                                        <td><?= $element['director'] ?></td>
+                                        <td><a href="<?= $element['link']  ?>" download="" class="btn active"><span class="material-symbols-outlined" style="color: white;">
+                                                    <span class="material-symbols-outlined">
+                                                        play_arrow
+                                                    </span>
+                                                </span></a></td>
+                                        <td class="primary"><button class="btn active" data-bs-toggle="modal" data-bs-target="#declined"><span class="material-symbols-outlined" style="color: white;">
+                                                    visibility
+                                                </span></button></td>
+                                        <td class="primary"><span class="badge active">deleted</span></td>
+                                        <td>
+                                            <span class="badge active">
+                                                <?= donner_genre($element['idtvshow'], $db) ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                        <a href="index.php?id_restore_show=<?= $element['idtvshow'] ?>"> <button class="btn active text-white"><span class="material-symbols-outlined">
+                                                    settings_backup_restore
+                                                </span></button></a>
+                                        </td>
+                                        <div class="modal fade" id="declined" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5 text-center" id="declined">declined requests</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <?= $element['description'] ?>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
 
                     </div>
                     <div class="tab-pane fade tab-bg" id="v-pills-employes" role="tabpanel" aria-labelledby="v-pills-employes-tab" tabindex="0">
-                        <!-- <div class="row">
-                            <?php foreach ($employes as $element) { ?>
-                                <div class="card mb-3 col">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img src="<?= $element['avatar'] ?>" class="img-fluid rounded-start" alt="employe image" />
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body">
-                                                <h5 class="card-title"><?= $element['username'] ?></h5>
-                                                <p class="card-text">
-                                                <p class="fw-light"><a href="<?= $element['email'] ?>"><?= $element['email'] ?></a></p>
-                                                <p class="text-muted">working since : <?= $element['createdate'] ?></p>
-                                                </p>
-                                            </div>
-                                        </div>
+                        <div class="row">
+                            <button type="button" class="btn btn-primary" data-bs-target="#addshow" data-bs-toggle="modal">
+                                Add tvshow
+                            </button>
+                            <h1 class="text-center">Added Shows</h1>
+                            <?php foreach ($addedshows as $element) : ?>
+                                <div class="card col flex-center text-center" style="width: 20rem;margin-left:25%;">
+                                    <h5>movie name : <?= $element['name'] ?></h5>
+                                    <h5>director : <?= $element['director'] ?></h5>
+                                    <h5>genre : <?php donner_genre($element['idgenre'], $db); ?></h5>
+                                    <div class="row">
+                                        <a href="index.php?id_delete_show=<?= $element['idtvshow'] ?>" class="col">
+                                            <button class="btn btn-danger">delete</button>
+                                        </a>
+                                        <button class="btn btn-warning col">edit</button>
                                     </div>
                                 </div>
-                            <?php } ?>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col" style="margin-left: 20%;"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Add Film
-                    </button>
-                </div>
-                <div class="col flex-end" style="margin-left: 20%;"><button type="button" class="btn btn-primary" data-bs-target="#addshow" data-bs-toggle="modal">
-                        Add tvshow
-                    </button>
-                </div>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">add movie</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="./index.php" method="POST" enctype="multipart/form-data">
-                                    <div class="mb-3">
-                                        <label for="movie_name" class="form-label">movie name</label>
-                                        <input type="text" class="form-control" id="movie_name" name="movie_name" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="director" class="form-label">director</label>
-                                        <input type="text" class="form-control" id="director" name="director" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="description" class="form-label">description</label>
-                                        <input type="text" class="form-control" id="description" name="description" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="link" class="form-label">trailler link</label>
-                                        <input type="text" class="form-control" id="link" name="link" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="length" class="form-label">length (in minutes)</label>
-                                        <input type="number" class="form-control" id="length" name="length" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="poster" class="form-label">poster</label>
-                                        <input type="file" class="form-control" id="poster" name="poster" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="genre" class="form-label">genre</label>
-                                        <select name="idgenre" id="genre" class="form-select" required>
-                                            <?php foreach ($genres as $element) : ?>
-                                                <option value="<?= $element['idgenre'] ?>"><?= $element['namegenre'] ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn flex-end" style="background-color: #BA68C8;" name="add">Add movie</button>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="addshow" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">add show</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="./index.php" method="POST" enctype="multipart/form-data">
-                                    <div class="mb-3">
-                                        <label for="show_name" class="form-label">tv show name</label>
-                                        <input type="text" class="form-control" id="show_name" name="show_name" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="director" class="form-label">director</label>
-                                        <input type="text" class="form-control" id="director" name="director" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="description" class="form-label">description</label>
-                                        <input type="text" class="form-control" id="description" name="description" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="link" class="form-label">trailler link</label>
-                                        <input type="text" class="form-control" id="link" name="link" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="poster" class="form-label">poster</label>
-                                        <input type="file" class="form-control" id="poster" name="poster" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="genre" class="form-label">genre</label>
-                                        <select name="idgenre" id="genre" class="form-select" required>
-                                            <?php foreach ($genres as $element) : ?>
-                                                <option value="<?= $element['idgenre'] ?>"><?= $element['namegenre'] ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn flex-end" style="background-color: #BA68C8;" name="add_show">Add show</button>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
+                                <hr>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <h1 class="text-center">Added Movies</h1>
-                    <?php foreach ($addedmovies as $element) : ?>
-                        <div class="card row flex-center text-center" style="width: 20rem;margin-left:25%;">
-                            <h5>movie name : <?= $element['movie_name'] ?></h5>
-                            <h5>director : <?= $element['director'] ?></h5>
-                            <h5>length : <?= calculer_taille($element['length'])['nbheures'] . ':' . calculer_taille($element['length'])['nbminutes']  ?></h5>
-                            <h5>genre : <?php donner_genre($element['idgenre'], $db); ?></h5>
-                            <div class="row">
-                                <a href="index.php?id_delete_movie=<?= $element['idmovie'] ?>" class="col">
-                                    <button class="btn btn-danger">delete</button>
-                                </a>
-                                <a href="#" class="col">
-                                    <button class="btn btn-success">edit</button>
-                                </a>
-                            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">add movie</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <hr>
-                    <?php endforeach; ?>
+                        <div class="modal-body">
+                            <form action="./index.php" method="POST" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label for="movie_name" class="form-label">movie name</label>
+                                    <input type="text" class="form-control" id="movie_name" name="movie_name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="director" class="form-label">director</label>
+                                    <input type="text" class="form-control" id="director" name="director" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">description</label>
+                                    <input type="text" class="form-control" id="description" name="description" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="link" class="form-label">trailler link</label>
+                                    <input type="text" class="form-control" id="link" name="link" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="length" class="form-label">length (in minutes)</label>
+                                    <input type="number" class="form-control" id="length" name="length" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="poster" class="form-label">poster</label>
+                                    <input type="file" class="form-control" id="poster" name="poster" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="genre" class="form-label">genre</label>
+                                    <select name="idgenre" id="genre" class="form-select" required>
+                                        <?php foreach ($genres as $element) : ?>
+                                            <option value="<?= $element['idgenre'] ?>"><?= $element['namegenre'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn flex-end" style="background-color: #BA68C8;" name="add">Add movie</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
                 </div>
-                <div class="col">
-                    <h1 class="text-center">Added Shows</h1>
-                    <?php foreach ($addedshows as $element) : ?>
-                        <div class="card row flex-center text-center" style="width: 20rem;margin-left:25%;">
-                            <h5>movie name : <?= $element['name'] ?></h5>
-                            <h5>director : <?= $element['director'] ?></h5>
-                            <h5>genre : <?php donner_genre($element['idgenre'], $db); ?></h5>
-                            <div class="row">
-                                <a href="index.php?id_delete_show=<?= $element['idtvshow'] ?>" class="col">
-                                    <button class="btn btn-danger">delete</button>
-                                </a>
-                                <button class="btn btn-warning col">edit</button>
-                            </div>
+            </div>
+            <div class="modal fade" id="addshow" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">add show</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <hr>
-                    <?php endforeach; ?>
+                        <div class="modal-body">
+                            <form action="./index.php" method="POST" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label for="show_name" class="form-label">tv show name</label>
+                                    <input type="text" class="form-control" id="show_name" name="show_name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="director" class="form-label">director</label>
+                                    <input type="text" class="form-control" id="director" name="director" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">description</label>
+                                    <input type="text" class="form-control" id="description" name="description" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="link" class="form-label">trailler link</label>
+                                    <input type="text" class="form-control" id="link" name="link" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="poster" class="form-label">poster</label>
+                                    <input type="file" class="form-control" id="poster" name="poster" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="genre" class="form-label">genre</label>
+                                    <select name="idgenre" id="genre" class="form-select" required>
+                                        <?php foreach ($genres as $element) : ?>
+                                            <option value="<?= $element['idgenre'] ?>"><?= $element['namegenre'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn flex-end" style="background-color: #BA68C8;" name="add_show">Add show</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
                 </div>
             </div>
         </div>
@@ -324,11 +409,6 @@
                     <img src="../assets/images/logoDark-removebg.png" width="100" height="100">
                 </a>
             </div>
-
-            <div class="col mb-3">
-
-            </div>
-
             <div class="col mb-3">
                 <h5>Section</h5>
                 <ul class="nav flex-column">
@@ -359,10 +439,11 @@
                 </ul>
             </div>
             <p class="text-muted">HKIMI MOHAMED AMIN &copy; 2022</p>
-        </footer>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <script src="../assets/script/script.js"></script>
+            </footer>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+        <script src="../assets/script/script.js"></script>
 
 </body>
 

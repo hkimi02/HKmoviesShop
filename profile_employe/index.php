@@ -45,6 +45,13 @@
     $req=$db->prepare('SELECT * FROM tvshows WHERE idemploye=:idemploye and garbage=:garbage');
     $req->execute(['idemploye'=>$_SESSION['iduser'],'garbage'=>0]);
     $addedshows=$req->fetchAll();
+    //grab the recycle bin from both tables
+    $req=$db->prepare('SELECT * FROM tvshows WHERE idemploye=:idemploye and garbage=:garbage');
+    $req->execute(['idemploye'=>$_SESSION['iduser'],'garbage'=>1]);
+    $deletedshows=$req->fetchAll();
+    $req=$db->prepare('SELECT * FROM movies WHERE idemploye=:idemploye and garbage=:garbage');
+    $req->execute(['idemploye'=>$_SESSION['iduser'],'garbage'=>1]);
+    $deletedmovies=$req->fetchAll();
     //form manupulation
     if(isset($_POST['add'])){
         extract($_POST);
@@ -120,10 +127,20 @@
         $req->execute(['garbage'=>1,'idmovie'=>$_GET['id_delete_movie']]);
         header('location:index.php?msg=movie deleted succesfuly you can find it at your recycle bin where you can delete it premantly or restore it&class=success');
     }
+    if(array_key_exists('id_restore_movie',$_GET)){
+        $req=$db->prepare('UPDATE movies SET garbage=:garbage WHERE idmovie=:idmovie');
+        $req->execute(['garbage'=>0,'idmovie'=>$_GET['id_restore_movie']]);
+        header('location:index.php?msg=movie restored succesfuly&class=success');
+    }
     if(array_key_exists('id_delete_show',$_GET)){
         $req=$db->prepare('UPDATE tvshows SET garbage=:garbage WHERE idtvshow=:idtvshow');
         $req->execute(['garbage'=>1,'idtvshow'=>$_GET['id_delete_show']]);
         header('location:index.php?msg=show deleted succesfuly you can find it at your recycle bin where you can delete it premantly or restore it&class=success');
+    }
+    if(array_key_exists('id_restore_show',$_GET)){
+        $req=$db->prepare('UPDATE tvshows SET garbage=:garbage WHERE idtvshow=:idtvshow');
+        $req->execute(['garbage'=>0,'idtvshow'=>$_GET['id_restore_show']]);
+        header('location:index.php?msg=show restored succesfuly&class=success');
     }
     include './home.phtml';
 }else{
