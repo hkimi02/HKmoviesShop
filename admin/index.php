@@ -33,7 +33,7 @@
         $res=$req->fetch();
         return $res['nb_employe'];
     }
-    if(isset($_SESSION['username'])){
+    if(isset($_SESSION['username']) && $_SESSION['isAdmin']==1){
     //en cours demandes
     $req=$db->prepare('SELECT * FROM jobrequest WHERE STATE=0'); 
     $req->execute();

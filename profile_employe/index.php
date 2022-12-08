@@ -17,7 +17,7 @@
             return movies_number($db)+shows_number($db);
         }
     session_start();
-    if(isset($_SESSION['username'])){
+    if(isset($_SESSION['username']) && $_SESSION['isEmploye']==1){
     //function to determine the number of hours and the number of minutes outta of number of minutes 
     function calculer_taille($nbminutes){
         $movie['nbheures']=((int)($nbminutes/60)).'h';
