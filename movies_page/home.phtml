@@ -29,14 +29,17 @@
         .title {
             color: #BA68C8;
         }
+        .main{
+            height: 70vh;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-margin background rounded">
+        <nav class="navbar navbar-expand-lg navbar-margin background">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="../assets/images/logoDark-removebg.png" alt="" class="logo"></a>
+                <a class="navbar-brand" href="../layout.phtml"><img src="../assets/images/logoDark-removebg.png" alt="" class="logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -48,44 +51,44 @@
                                 </span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><span class="material-symbols-outlined text-white">
+                            <a class="nav-link" href=""><span class="material-symbols-outlined text-white">
                                     movie
                                 </span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="../applyjob/" class="nav-link"><span class="material-symbols-outlined text-white">
-                                    badge
+                            <a class="nav-link" href="
+                            <?php if($_SESSION['isAdmin']==1) {
+                                echo '../admin/';
+                            }else if($_SESSION['isEmploye']==1){
+                                echo '../profile_employe/';
+                            }else{
+                                echo '../profile_user/';
+                            }
+                            ?>"><span class="material-symbols-outlined text-white">
+                                    person
                                 </span></a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="material-symbols-outlined text-white">
-                                    manage_accounts
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="material-symbols-outlined">
-                                            login
-                                        </span><span class="text-dropdown">login</span></a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="./signUp/"><span class="material-symbols-outlined">
-                                            person_add
-                                        </span><span class="text-dropdown">Sign Up</span></a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    </form>
+                    <div class="float-end d-flex info" style="margin-left: -12%;">
+                        <div class="dropdown text-end">
+                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="<?= $_SESSION['avatar'] ?>" alt="mdo" width="32" height="32" class="rounded-circle">
+                            </a>
+                            <ul class="dropdown-menu text-small">
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="../logout/">Sign out</a></li>
+                            </ul>
+                        </div>
+                        <p><?= $_SESSION['username'] ?></p>
+                    </div>
                 </div>
             </div>
         </nav>
         <div class="main">
+
         </div>
         <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 border-top" style="color: white;">
             <div class="col mb-3">
@@ -93,11 +96,6 @@
                     <img src="../assets/images/logoDark-removebg.png" width="100" height="100">
                 </a>
             </div>
-
-            <div class="col mb-3">
-
-            </div>
-
             <div class="col mb-3">
                 <h5>Section</h5>
                 <ul class="nav flex-column">
