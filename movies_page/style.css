@@ -190,9 +190,16 @@ table {
 
 .btn-bg {
     background: #BA68C8;
-    width: 100%;
+}
+
+.btn-check {
+    background: #BA68C8;
+}
+
+.btn-check:hover {
+    background: #BA68C8;
 }
 
 .btn-bg:hover {
-    background: #BA68C8;
+    background-color: transparent;
 }

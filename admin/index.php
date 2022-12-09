@@ -42,8 +42,8 @@
     //all job requests
       //declined deamndes
       $req=$db->prepare('SELECT * FROM jobrequest'); 
-      $req->execute();
-      $requests=$req->fetchAll();
+        $req->execute();
+        $requests=$req->fetchAll();
     //employees 
     $req=$db->prepare('SELECT * FROM users WHERE isEmploye=:isemploye');
     $req->execute(['isemploye'=>1]);
@@ -58,8 +58,11 @@
         $email=$accepted_demande['email'];
         $token=$accepted_demande['token'];
         $link = "<a href='" . $_SERVER['HTTP_HOST'] . "/" . explode('/', $_SERVER['PHP_SELF'])[1] . 
-        "/signupemploye/index.php?idapply=" . $idapply . "&email=" . $email . "&token=" . $token . "'>click here so you can fill out the formr</a>";
-        $body='welcome , we are very happy to inform you that your demande for a job at HKmoviesShop has been accepted fill <br> out the form by clicking at the link so you can finish the last step and became one of our family';
+        "/signupemploye/index.php?idapply=" . $idapply . "&email=" . $email . "&token=" . $token . ">
+        click here so you can fill out the formr</a>";
+        $body='<h1>welcome , we are very happy to inform you that your demande for a job at 
+        HKmoviesShop has been accepted fill <br> out the form by clicking at the link so you can 
+        finish the last step and became one of our family</h1>';
         sendmail('HKmoviesShop', $email, 'Lien de verifiaction', $body .'<br>' . $link . '');
         $req=$db->prepare('UPDATE jobrequest SET state=:state WHERE iddemande=:id');
         $req->execute(['state'=>1,'id'=>$idapply]);

@@ -98,9 +98,9 @@
                 <?php endif; ?>
             </div>
             <div class="row shadow-lg rounded">
-                <a href="index.php?filter=all" class="col"><button class="btn btn-bg"">ALL</button></a>
-                <a href="index.php?filter=shows" class="col"><button class="btn btn-bg">shows</button></a>
-                <a href="index.php?filter=movies" class="col"><button class="btn btn-bg">movies</button></a>
+                <a href="index.php?filter=all" class="col"><button class="btn btn-check">ALL</button></a>
+                <a href="index.php?filter=shows" class="col"><button class="btn btn-check">shows</button></a>
+                <a href="index.php?filter=movies" class="col"><button class="btn btn-check">movies</button></a>
             </div>
             <?php if($filter=='all'|| $filter=='movies' ): ?>
             <h1 class="text-center">movies</h1>
@@ -117,9 +117,9 @@
                                 <p class="badge active"><?php donner_genre($element['idgenre'], $db); ?></p>
                                 <div class="row">
                                     <a href="index.php?id_fav_movie=<?= $element['idmovie']?>" class="col">
-                                        <button class="btn-poster"><span class="material-symbols-outlined"><span class="material-symbols-outlined">
+                                        <button class="btn-poster <?= check_liked_movie($db,$element['idmovie']) ? 'btn-bg' : ''  ?>"><span class="material-symbols-outlined">
                                                     favorite
-                                                </span></span></button></a>
+                                                </span></button></a>
                                     <a href="<?= $element['link']  ?>" class="col"><button class="btn-poster">
                                             <span class="material-symbols-outlined">
                                                 play_arrow
@@ -149,7 +149,7 @@
                                 <p class="badge active"><?php donner_genre($element['idgenre'], $db); ?></p>
                                 <div class="row">
                                     <a href="index.php?id_fav_show=<?=$element['idtvshow']?>" class="col">
-                                        <button class="btn-poster"><span class="material-symbols-outlined"><span class="material-symbols-outlined">
+                                    <button class="btn-poster <?= check_liked_show($db,$element['idtvshow']) ? 'btn-bg' : ''  ?>"><span class="material-symbols-outlined"><span class="material-symbols-outlined">
                                                     favorite
                                                 </span></span></button></a>
                                     <a href="<?= $element['link']  ?>" class="col"><button class="btn-poster">

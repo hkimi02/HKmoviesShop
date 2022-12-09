@@ -30,6 +30,31 @@
         if(array_key_exists('filter',$_GET)){
             $filter=$_GET['filter'];
         }
+        function check_liked_movie($db,$id_movie){
+            $req=$db->prepare('SELECT * FROM LIKES WHERE id_movie=:id_movie AND id_user=:id_user');
+            $req->execute([
+                'id_user'=>$_SESSION['iduser'],
+                'id_movie'=>$id_movie,
+            ]);
+            if($req->fetch()){
+            return true;
+            }else{
+            return false;
+        }
+    }
+    function check_liked_show($db,$id_show){
+        $req=$db->prepare('SELECT * FROM likes_shows WHERE id_show=:id_movie AND id_user=:id_user');
+        $req->execute([
+            'id_user'=>$_SESSION['iduser'],
+            'id_movie'=>$id_show,
+        ]);
+        if($req->fetch()){
+        return true;
+        }else{
+        return false;
+    }
+}
+        //movie 
         if(array_key_exists('id_fav_movie',$_GET)){
             $id_movie=$_GET['id_fav_movie'];
             $req=$db->prepare('SELECT * FROM LIKES WHERE id_movie=:id_movie AND id_user=:id_user');
@@ -38,9 +63,15 @@
                 'id_movie'=>$id_movie,
             ]);
             if($req->fetch()){
-                header('location:index.php?msg=this movie is already added to your list&class=danger');
+                $req=$db->prepare('DELETE FROM LIKES WHERE id_movie=:id_movie AND id_user=:id_user');
+            $req->execute([
+                'id_user'=>$_SESSION['iduser'],
+                'id_movie'=>$id_movie,
+            ]);
+            if($req){
+                header('location:index.php');
             }
-            else{
+            }else{
             $req=$db->prepare('INSERT INTO likes(id_user,id_movie,garbage) VALUES(:id_user,:id_movie,:garbage)');
             $req->execute([
                 'id_user'=>$_SESSION['iduser'],
@@ -49,10 +80,10 @@
             ]
         );
             if($req){
-                header('location:index.php?msg=movie added succesfuly to your favourite list&class=success');
+                header('location:index.php');
             }
         }
-        }
+    }
         if(array_key_exists('id_fav_show',$_GET)){
             $id_show=$_GET['id_fav_show'];
             $req=$db->prepare('SELECT * FROM likes_shows WHERE id_show=:id_movie AND id_user=:id_user');
@@ -61,7 +92,14 @@
                 'id_movie'=>$id_show,
             ]);
             if($req->fetch()){
-                header('location:index.php?msg=this show is already added to your list&class=danger');
+                $req=$db->prepare('DELETE FROM likes_shows WHERE id_show=:id_movie AND id_user=:id_user');
+            $req->execute([
+                'id_user'=>$_SESSION['iduser'],
+                'id_movie'=>$id_show,
+            ]);
+            if($req){
+                header('location:index.php');
+            }
             }else{
             $req=$db->prepare('INSERT INTO likes_shows(id_user,id_show,garbage) VALUES(:id_user,:id_show,:garbage)');
             $req->execute([
@@ -71,7 +109,7 @@
             ]
         );
             if($req){
-                header('location:index.php?msg=show added succesfuly to your favourite list&class=success');
+                header('location:index.php');
             }
         }
     }
