@@ -157,7 +157,7 @@ table {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgb(228, 187, 255);
     color: #fff;
     font-family: sans-serif;
     display: flex;
@@ -190,6 +190,7 @@ table {
 
 .btn-bg {
     background: #BA68C8;
+    width: 100%;
 }
 
 .btn-bg:hover {

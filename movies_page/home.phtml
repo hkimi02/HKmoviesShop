@@ -90,8 +90,15 @@
             </div>
         </nav>
         <div class="main">
-            <div class="row">
-                <a href="index.php?filter=all" class="col"><button class="btn btn-bg" >ALL</button></a>
+        <div class="row">
+                <?php if (array_key_exists('msg', $_GET)) : ?>
+                    <div class="alert alert-<?= $_GET['class'] ?>">
+                        <?= $_GET['msg']; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="row shadow-lg rounded">
+                <a href="index.php?filter=all" class="col"><button class="btn btn-bg"">ALL</button></a>
                 <a href="index.php?filter=shows" class="col"><button class="btn btn-bg">shows</button></a>
                 <a href="index.php?filter=movies" class="col"><button class="btn btn-bg">movies</button></a>
             </div>
@@ -108,12 +115,7 @@
                                 <p><?= $element['descripition']?></p>
                                 <p class="badge active"><?php donner_genre($element['idgenre'], $db); ?></p>
                                 <div class="row">
-                                    <a href="" class="col">
-                                        <button class="btn-poster"><span class="material-symbols-outlined"><span class="material-symbols-outlined">
-                                                    bookmark
-                                                </span></span></button>
-                                    </a>
-                                    <a href="#" class="col">
+                                    <a href="index.php?id_fav_movie=<?= $element['idmovie']?>" class="col">
                                         <button class="btn-poster"><span class="material-symbols-outlined"><span class="material-symbols-outlined">
                                                     favorite
                                                 </span></span></button></a>
@@ -145,12 +147,7 @@
                                 <p><?= $element['description']?></p>
                                 <p class="badge active"><?php donner_genre($element['idgenre'], $db); ?></p>
                                 <div class="row">
-                                    <a href="" class="col">
-                                        <button class="btn-poster"><span class="material-symbols-outlined"><span class="material-symbols-outlined">
-                                                    bookmark
-                                                </span></span></button>
-                                    </a>
-                                    <a href="#" class="col">
+                                    <a href="index.php?id_fav_show=<?=$element['idtvshow']?>" class="col">
                                         <button class="btn-poster"><span class="material-symbols-outlined"><span class="material-symbols-outlined">
                                                     favorite
                                                 </span></span></button></a>
