@@ -3,12 +3,6 @@
     use PHPMailer\PHPMailer\PHPMailer;
     include "../send.php";
     session_start();
-    function products_number($db){
-        $req=$db->prepare("SELECT count(movies.idmovie) as nb_movie,count(tvshows.idtvshow) as nb_shows FROM movies,tvshows");
-        $req->execute();
-        $res=$req->fetch();
-        return $res['nb_movie']+$res['nb_shows'];
-    }
     function shows_number($db){
         $req=$db->prepare("SELECT count(tvshows.idtvshow) as nb_shows FROM tvshows");
         $req->execute();
@@ -20,6 +14,9 @@
         $req->execute();
         $res=$req->fetch();
         return $res['nb_movie'];
+    }
+    function products_number($db){
+        return shows_number($db)+movies_number($db);
     }
     function total_users($db){
         $req=$db->prepare("SELECT count(iduser) as nb_user FROM users");
