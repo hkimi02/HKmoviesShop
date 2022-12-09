@@ -77,8 +77,7 @@
                 'id_user'=>$_SESSION['iduser'],
                 'id_movie'=>$id_movie,
                 'garbage'=>0,
-            ]
-        );
+            ]);
             if($req){
                 header('location:index.php');
             }

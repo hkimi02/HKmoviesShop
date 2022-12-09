@@ -14,8 +14,8 @@ function sendmail($name,$email,$subject,$message,$file_name=null){
     $mail->isSMTP();                            //envoyer utilisant SMTP
     $mail->Host="smtp.gmail.com";                //initialization de serveur SMTP
     $mail->SMTPAuth=true;                       //activation SMTP authentification
-    $mail->Username="bizomejri@gmail.com";  //ADRESSE SMTP
-    $mail->Password="cxjzwcrqdlszqyax";           //Mot de passe SMTP
+    $mail->Username="hkmoviesshop@gmail.com";  //ADRESSE SMTP
+    $mail->Password="rkruovdrlycxwmtw";           //Mot de passe SMTP
     $mail->Port=465;                            //Port TCP
     $mail->SMTPSecure="ssl";
     /* Contenu De mail de ADMIN*/

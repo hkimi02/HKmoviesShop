@@ -68,6 +68,12 @@
                     <button class="nav-link" id="v-pills-employes-tab" data-bs-toggle="pill" data-bs-target="#v-pills-employes" type="button" role="tab" aria-controls="v-pills-employes" aria-selected="false"><span class="material-symbols-outlined">
                             badge
                         </span></button>
+                    <button class="nav-link" id="v-pills-movies-tab" data-bs-toggle="pill" data-bs-target="#v-pills-movies" type="button" role="tab" aria-controls="v-pills-movies" aria-selected="false"><span class="material-symbols-outlined">
+                            videocam
+                        </span></button>
+                    <button class="nav-link" id="v-pills-shows-tab" data-bs-toggle="pill" data-bs-target="#v-pills-shows" type="button" role="tab" aria-controls="v-pills-shows" aria-selected="false"><span class="material-symbols-outlined">
+                            live_tv
+                        </span></button>
                 </div>
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active tab-bg" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
@@ -273,7 +279,7 @@
                     </div>
                     <div class="tab-pane fade tab-bg" id="v-pills-employes" role="tabpanel" aria-labelledby="v-pills-employes-tab" tabindex="0">
                         <div class="row">
-                    <?php foreach ($employes as $element) { ?>
+                            <?php foreach ($employes as $element) { ?>
                                 <div class="card mb-3 col">
                                     <div class="row g-0">
                                         <div class="col-md-4">
@@ -290,9 +296,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <?php } ?>
+                            <?php } ?>
                         </div>
-                        </div>
+                    </div>
+                    <div class="tab-pane fade tab-bg" id="v-pills-movies" role="tabpanel" aria-labelledby="v-pills-movies-tab" tabindex="0">
+                    </div>
+                    <div class="tab-pane fade tab-bg" id="v-pills-shows" role="tabpanel" aria-labelledby="v-pills-shows-tab" tabindex="0">
+                    </div>
                 </div>
             </div>
         </div>
