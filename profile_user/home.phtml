@@ -27,7 +27,8 @@
         .present-card:hover {
             box-shadow: none !important;
         }
-        .tab-content{
+
+        .tab-content {
             justify-content: center;
             margin-top: 6%;
         }
@@ -87,10 +88,10 @@
                             grid_view
                         </span></button>
                     <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><span class="material-symbols-outlined">
-                            play_circle
+                            videocam
                         </span></button>
                     <button class="nav-link" id="v-pills-employes-tab" data-bs-toggle="pill" data-bs-target="#v-pills-employes" type="button" role="tab" aria-controls="v-pills-employes" aria-selected="false"><span class="material-symbols-outlined">
-                            favorite
+                            live_tv
                         </span></button>
                     <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"><span class="material-symbols-outlined">
                             delete
@@ -102,31 +103,57 @@
                             <div class="card col shadow-lg present-card" style="width: 40rem;height:25rem;">
                                 <img src="../assets/images/profile_user_image.svg" alt="" height="300rem" width="300rem">
                                 <hr>
-                                <h3 class="text-center" style="color:#BA68C8;">find your watchlist in your profile</h3>
+                                <h3 class="text-center" style="color:#BA68C8;">your liked movies</h3>
                             </div>
                             <div class="card col shadow-lg present-card" style="width: 20rem;">
                                 <img src="../assets/images/likesList.svg" alt="" height="300rem" width="270rem">
                                 <hr>
-                                <h3 class="text-center" style="color:#BA68C8;">find your likes list in your profile</h3>
+                                <h3 class="text-center" style="color:#BA68C8;">your liked shows</h3>
                             </div>
                             <div class="card col shadow-lg present-card" style="width: 20rem;">
                                 <img src="../assets/images/delete.svg" alt="" height="300rem" width="300rem">
                                 <hr>
-                                <h3 class="text-center" style="color:#BA68C8;">restore your watchlist items</h3>
+                                <h3 class="text-center" style="color:#BA68C8;">restore,delete your liked items</h3>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade tab-bg" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
-
-                    
+                        <div class="row">
+                            <h1 class="text-center">Added movies</h1>
+                            <?php foreach ($liked_movies as $element) : ?>
+                                <div class="image col">
+                                    <img class="image--img" src="<?= $element['poster'] ?> " height="300rem">
+                                    <div class="image--overplay">
+                                        <div class="image--description">
+                                            <p><?= $element['movie_name'] ?></p>
+                                            <p><?= $element['director'] ?></p>
+                                            <p>length : <?= calculer_taille($element['length'])['nbheures'] . ':' . calculer_taille($element['length'])['nbminutes']  ?></p>
+                                            <p class="badge active"><?php donner_genre($element['idgenre'], $db); ?></p>
+                                            <div class="row">
+                                                <a href="index.php?id_delete_movie=<?= $element['idmovie'] ?>" class="col">
+                                                    <button class="btn-poster"><span class="material-symbols-outlined">delete</span></button>
+                                                </a>
+                                                <a href="<?= $element['link']  ?>" class="col"><button class="btn-poster">
+                                                        <span class="material-symbols-outlined">
+                                                            play_arrow
+                                                        </span>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
 
                     </div>
                     <div class="tab-pane fade tab-bg" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">
-                    <h1 class="text-center">recycle bin</h1>
-                    <table>
+                        <h1 class="text-center">deleted movies</h1>
+                        <table>
                             <thead>
                                 <th>name</th>
                                 <th>director</th>
+                                <th>length</th>
                                 <th>watch trailler</th>
                                 <th>details</th>
                                 <th>state </th>
@@ -134,12 +161,147 @@
                                 <th>operation</th>
                             </thead>
                             <tbody>
+
+                                <?php foreach ($deleted_liked_movies as $element) { ?>
+                                    <tr>
+                                        <td><?= $element['movie_name'] ?></td>
+                                        <td><?= $element['director'] ?></td>
+                                        <td><?= calculer_taille($element['length'])['nbheures'] . ':' . calculer_taille($element['length'])['nbminutes'] ?></td>
+                                        <td><a href="<?= $element['link']  ?>" class="btn active">
+                                                <span class="material-symbols-outlined" style="color: white;">
+                                                    play_arrow
+                                                </span>
+                                                </span></a></td>
+                                        <td class="primary"><button class="btn active" data-bs-toggle="modal" data-bs-target="#declined"><span class="material-symbols-outlined" style="color: white;">
+                                                    visibility
+                                                </span></button></td>
+                                        <td class="primary"><span class="badge active">deleted</span></td>
+                                        <td>
+                                            <span class="badge active">
+                                                <?= donner_genre($element['idmovie'], $db) ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="index.php?id_restore_movie=<?= $element['idmovie'] ?>"><button class="btn active text-white"><span class="material-symbols-outlined">
+                                                        settings_backup_restore
+                                                    </span></button></a>
+                                            <a href="index.php?id_forever_movie=<?= $element['idmovie'] ?>"><button class="btn active text-white"><span class="material-symbols-outlined">
+                                                        <span class="material-symbols-outlined">
+                                                            delete_forever
+                                                        </span>
+                                                </button></a>
+                                        </td>
+                                        <div class="modal fade" id="declined" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5 text-center" id="declined">declined requests</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <?= $element['descripition'] ?>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
+                        <div class="mt-5">
+                            <h1 class="text-center">deleted shows</h1>
+                            <table>
+                                <thead>
+                                    <th>name</th>
+                                    <th>director</th>
+                                    <th>watch trailler</th>
+                                    <th>details</th>
+                                    <th>state </th>
+                                    <th>genre</th>
+                                    <th>operation</th>
+                                </thead>
+                                <tbody>
+                                    <div class="row">
+                                        <?php foreach ($deleted_liked_shows as $element) { ?>
+                                            <tr>
+                                                <td><?= $element['name'] ?></td>
+                                                <td><?= $element['director'] ?></td>
+                                                <td><a href="<?= $element['link']  ?>" download="" class="btn active"><span class="material-symbols-outlined" style="color: white;">
+                                                            <span class="material-symbols-outlined">
+                                                                play_arrow
+                                                            </span>
+                                                        </span></a></td>
+                                                <td class="primary"><button class="btn active" data-bs-toggle="modal" data-bs-target="#declined"><span class="material-symbols-outlined" style="color: white;">
+                                                            visibility
+                                                        </span></button></td>
+                                                <td class="primary"><span class="badge active">deleted</span></td>
+                                                <td>
+                                                    <span class="badge active">
+                                                        <?= donner_genre($element['idtvshow'], $db) ?>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <a href="index.php?id_restore_show=<?= $element['idtvshow'] ?>"> <button class="btn active text-white"><span class="material-symbols-outlined">
+                                                                settings_backup_restore
+                                                            </span></button></a>
+                                                            <a href="index.php?id_forever_show=<?= $element['idtvshow'] ?>"><button class="btn active text-white"><span class="material-symbols-outlined">
+                                                        <span class="material-symbols-outlined">
+                                                            delete_forever
+                                                        </span>
+                                                </button></a>
+                                                </td>
+                                                <div class="modal fade" id="declined" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5 text-center" id="declined">declined requests</h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <?= $element['description'] ?>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </tr>
+                                        <?php } ?>
+                                    </div>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="tab-pane fade tab-bg" id="v-pills-employes" role="tabpanel" aria-labelledby="v-pills-employes-tab" tabindex="0">
-                    
 
+                        <div class="row">
+                            <h1 class="text-center">Added Shows</h1>
+                            <?php foreach ($liked_shows as $element) : ?>
+                                <div class="image col">
+                                    <img class="image--img" src="<?= $element['poster'] ?> " height="300rem">
+                                    <div class="image--overplay">
+                                        <div class="image--description">
+                                            <p><?= $element['name'] ?></p>
+                                            <p><?= $element['director'] ?></p>
+                                            <p class="badge active"><?php donner_genre($element['idgenre'], $db); ?></p>
+                                            <div class="row">
+                                                <a href="index.php?id_delete_show=<?= $element['idtvshow'] ?>" class="col">
+                                                    <button class="btn-poster"><span class="material-symbols-outlined">delete</span></button>
+                                                </a>
+                                                <a href="<?= $element['link']  ?>" class="col"><button class="btn-poster">
+                                                        <span class="material-symbols-outlined">
+                                                            play_arrow
+                                                        </span>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
             </div>
