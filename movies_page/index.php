@@ -1,6 +1,7 @@
 <?php 
     require_once '../db_connect.php';
     session_start();
+    //grab genre start by id_genre
     function donner_genre($id_genre,$db){
         $req=$db->prepare('SELECT namegenre FROM genre WHERE idgenre=:id_genre');
         $req->execute(['id_genre'=>$id_genre]);
@@ -8,6 +9,12 @@
         foreach($added_genre as $value){
         echo $value['namegenre']; 
     }
+    }
+    //calculer taille film
+    function calculer_taille($nbminutes){
+        $movie['nbheures']=((int)($nbminutes/60)).'h';
+        $movie['nbminutes']=($nbminutes%60).'min';
+        return $movie;
     }
     if(isset($_SESSION['username'])){
         $filter='all';
@@ -25,6 +32,15 @@
         }
         if(array_key_exists('id_fav_movie',$_GET)){
             $id_movie=$_GET['id_fav_movie'];
+            $req=$db->prepare('SELECT * FROM LIKES WHERE id_movie=:id_movie AND id_user=:id_user');
+            $req->execute([
+                'id_user'=>$_SESSION['iduser'],
+                'id_movie'=>$id_movie,
+            ]);
+            if($req->fetch()){
+                header('location:index.php?msg=this movie is already added to your list&class=danger');
+            }
+            else{
             $req=$db->prepare('INSERT INTO likes(id_user,id_movie,garbage) VALUES(:id_user,:id_movie,:garbage)');
             $req->execute([
                 'id_user'=>$_SESSION['iduser'],
@@ -36,8 +52,17 @@
                 header('location:index.php?msg=movie added succesfuly to your favourite list&class=success');
             }
         }
+        }
         if(array_key_exists('id_fav_show',$_GET)){
             $id_show=$_GET['id_fav_show'];
+            $req=$db->prepare('SELECT * FROM likes_shows WHERE id_show=:id_movie AND id_user=:id_user');
+            $req->execute([
+                'id_user'=>$_SESSION['iduser'],
+                'id_movie'=>$id_show,
+            ]);
+            if($req->fetch()){
+                header('location:index.php?msg=this show is already added to your list&class=danger');
+            }else{
             $req=$db->prepare('INSERT INTO likes_shows(id_user,id_show,garbage) VALUES(:id_user,:id_show,:garbage)');
             $req->execute([
                 'id_user'=>$_SESSION['iduser'],
@@ -49,8 +74,8 @@
                 header('location:index.php?msg=show added succesfuly to your favourite list&class=success');
             }
         }
+    }
     include './home.phtml';
     }else{
         header('location:../index.php?msg=you have to log in to acces movies page&class=danger');
     }
-?>
