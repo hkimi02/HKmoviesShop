@@ -113,6 +113,7 @@
                                 <p><?= $element['movie_name'] ?></p>
                                 <p><?= $element['director'] ?></p>
                                 <p><?= $element['descripition']?></p>
+                                <p>length : <?= calculer_taille($element['length'])['nbheures'] . ':' . calculer_taille($element['length'])['nbminutes']  ?></p>
                                 <p class="badge active"><?php donner_genre($element['idgenre'], $db); ?></p>
                                 <div class="row">
                                     <a href="index.php?id_fav_movie=<?= $element['idmovie']?>" class="col">
