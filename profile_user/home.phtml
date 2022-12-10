@@ -46,7 +46,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../index.php"><span class="material-symbols-outlined text-white">
+                            <a class="nav-link active" aria-current="page" href="../logout/"><span class="material-symbols-outlined text-white">
                                     home
                                 </span></a>
                         </li>
@@ -62,7 +62,7 @@
                                 <img src="<?= $_SESSION['avatar'] ?>" alt="mdo" width="32" height="32" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu text-small">
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="../edit_user/index.php?edit_info=<?= $_SESSION['iduser'] ?>">Settings</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -161,7 +161,6 @@
                                 <th>operation</th>
                             </thead>
                             <tbody>
-
                                 <?php foreach ($deleted_liked_movies as $element) { ?>
                                     <tr>
                                         <td><?= $element['movie_name'] ?></td>
@@ -275,7 +274,6 @@
                         </div>
                     </div>
                     <div class="tab-pane fade tab-bg" id="v-pills-employes" role="tabpanel" aria-labelledby="v-pills-employes-tab" tabindex="0">
-
                         <div class="row">
                             <h1 class="text-center">Added Shows</h1>
                             <?php foreach ($liked_shows as $element) : ?>

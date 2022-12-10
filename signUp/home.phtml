@@ -12,18 +12,21 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
   <link rel="stylesheet" href="../assets/style/addings.css">
   <style>
-    .main{
-      margin-top: 12%!important;
+    .main {
+      margin-top: 12% !important;
     }
-    .submit-btn{
+
+    .submit-btn {
       background-color: #BA68C8;
       color: white;
     }
-    .submit-btn:hover{
+
+    .submit-btn:hover {
       background-color: #BA68C8;
       color: white;
     }
-    .title{
+
+    .title {
       color: #BA68C8;
     }
   </style>
@@ -78,114 +81,113 @@
       </div>
     </nav>
     <div class="main">
-    <div class="row">
-      <div class="sign-up-user-form col">
-        <form class="shadow-lg p-5 rounded col" method="POST" action="./index.php" enctype="multipart/form-data">
-          <h1 class="text-center text-capitalize title">welcome fill this form and beacame one of our family</h1>
-          <?php if (array_key_exists('msg', $_GET)) : ?>
-            <div class="alert alert-<?= $_GET['class'] ?>">
-              <?= $_GET['msg']; ?>
+      <div class="col-xl-12">
+        <div class="d-flex justify-content-center">
+          <div class="row shadow-lg">
+            <div class="sign-up-user-form col-lg-6">
+              <form class="p-5 rounded col" method="POST" action="./index.php" enctype="multipart/form-data">
+                <h1 class="text-center text-capitalize title">welcome fill this form and beacame one of our family</h1>
+                <?php if (array_key_exists('msg', $_GET)) : ?>
+                  <div class="alert alert-<?= $_GET['class'] ?>">
+                    <?= $_GET['msg']; ?>
+                  </div>
+                <?php endif; ?>
+                <div class="mb-3">
+                  <label for="username" class="form-label"> <i class="bi bi-person-circle"></i></label>
+                  <input type="text" class="form-control" id="username" name="username" placeholder="username" required>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label"><i class="bi bi-envelope"></i></label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Email address " required>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label"> <i class="bi bi-lock-fill"></i></label>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password2" class="form-label"> <i class="bi bi-lock-fill"></i></label>
+                  <input type="password" class="form-control" id="password2" name="password2" placeholder="confirm Password" required>
+                </div>
+                <div class="mb-3">
+                  <label for="avatar" class="form-label"><i class="bi bi-camera-fill" required></i></label>
+                  <input type="file" class="form-control" id="avatar" name="avatar">
+                </div>
+                <button type="submit" class="btn submit-btn" name="submit">sign up</button>
+              </form>
             </div>
-          <?php endif; ?>
-          <div class="mb-3">
-            <label for="username" class="form-label"> <i class="bi bi-person-circle"></i></label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="username" required>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label"><i class="bi bi-envelope"></i></label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Email address " required>
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label"> <i class="bi bi-lock-fill"></i></label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-          </div>
-          <div class="mb-3">
-            <label for="password2" class="form-label"> <i class="bi bi-lock-fill"></i></label>
-            <input type="password" class="form-control" id="password2" name="password2" placeholder="confirm Password" required>
-          </div>
-          <div class="mb-3">
-            <label for="avatar" class="form-label"><i class="bi bi-camera-fill" required></i></label>
-            <input type="file" class="form-control" id="avatar" name="avatar">
-          </div>
-          <button type="submit" class="btn submit-btn" name="submit">sign up</button>
-        </form>
-      </div>
-      <div class="col">
-        <img src="../assets/images/Movie Night-bro.svg" class="img-thumbnail logo" style="height:41.5rem;">
-      </div>
-    </div>
-    </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">login</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form action="../login/" method="POST">
-              <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
-              </div>
-              <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password">
-              </div>
-              <button type="submit" class="btn" style="background-color: #BA68C8;">Submit</button>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </form>
-          </div>
-          <div class="modal-footer">
+            <div class="col-lg-6">
+              <img src="../assets/images/Movie Night-bro.svg" class="d-lg-block d-none logo">
+            </div>
           </div>
         </div>
       </div>
     </div>
-  <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 border-top" style="color: white;">
-      <div class="col mb-3">
-        <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
-          <img src="../assets/images/logoDark-removebg.png" width="100" height="100">
-        </a>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">login</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="../login/" method="POST">
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                  </div>
+                  <button type="submit" class="btn" style="background-color: #BA68C8;" name="login">Submit</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 border-top" style="color: white;">
+          <div class="col mb-3">
+            <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+              <img src="../assets/images/logoDark-removebg.png" width="100" height="100">
+            </a>
+          </div>
+          <div class="col mb-3">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+            </ul>
+          </div>
+          <div class="col mb-3">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+            </ul>
+          </div>
+          <div class="col mb-3">
+            <h5>socials</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"><i class="bi bi-facebook"></i></a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"> <i class="bi bi-instagram"></i></a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"> <i class="bi bi-github"></i></a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"><i class="bi bi-info-circle"></i></a></li>
+            </ul>
+          </div>
+          <p class="text-muted">HKIMI MOHAMED AMIN &copy; 2022</p>
+        </footer>
       </div>
-
-      <div class="col mb-3">
-
-      </div>
-
-      <div class="col mb-3">
-        <h5>Section</h5>
-        <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
-        </ul>
-      </div>
-      <div class="col mb-3">
-        <h5>Section</h5>
-        <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
-        </ul>
-      </div>
-      <div class="col mb-3">
-        <h5>socials</h5>
-        <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"><i class="bi bi-facebook"></i></a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"> <i class="bi bi-instagram"></i></a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"> <i class="bi bi-github"></i></a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white"><i class="bi bi-info-circle"></i></a></li>
-        </ul>
-      </div>
-      <p class="text-muted">HKIMI MOHAMED AMIN &copy; 2022</p>
-    </footer>
-    </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-  <script src="../assets/script/script.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+      <script src="../assets/script/script.js"></script>
 </body>
 
 </html>
