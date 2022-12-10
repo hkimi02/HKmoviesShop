@@ -48,7 +48,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../index.php"><span class="material-symbols-outlined text-white">
+                            <a class="nav-link active" aria-current="page" href="../logout/"><span class="material-symbols-outlined text-white">
                                     home
                                 </span></a>
                         </li>
@@ -57,8 +57,10 @@
                                     movie
                                 </span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="
+                    </ul>
+                    <div class="float-end d-flex info" style="margin-left: -12%;">
+                        <div class="dropdown text-end">
+                            <a href="
                             <?php if ($_SESSION['isAdmin'] == 1) {
                                 echo '../admin/';
                             } else if ($_SESSION['isEmploye'] == 1) {
@@ -66,23 +68,16 @@
                             } else {
                                 echo '../profile_user/';
                             }
-                            ?>"><span class="material-symbols-outlined text-white">
-                                    person
-                                </span></a>
-                        </li>
-                    </ul>
-                    <div class="float-end d-flex info" style="margin-left: -12%;">
-                        <div class="dropdown text-end">
-                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            ?>">
                                 <img src="<?= $_SESSION['avatar'] ?>" alt="mdo" width="32" height="32" class="rounded-circle">
                             </a>
-                            <ul class="dropdown-menu text-small">
+                            <!-- <ul class="dropdown-menu text-small">
                                 <li><a class="dropdown-item" href="#">Settings</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="../logout/">Sign out</a></li>
-                            </ul>
+                            </ul> -->
                         </div>
                         <p><?= $_SESSION['username'] ?></p>
                     </div>
@@ -98,9 +93,9 @@
                 <?php endif; ?>
             </div>
             <div class="row shadow-lg rounded">
-                <a href="index.php?filter=all" class="col"><button class="btn btn-check">ALL</button></a>
-                <a href="index.php?filter=shows" class="col"><button class="btn btn-check">shows</button></a>
-                <a href="index.php?filter=movies" class="col"><button class="btn btn-check">movies</button></a>
+                <a href="index.php?filter=all" class="col"><button class="btn btn-bg" style="width: 100%;">ALL</button></a>
+                <a href="index.php?filter=shows" class="col"><button class="btn btn-bg" style="width: 100%;">shows</button></a>
+                <a href="index.php?filter=movies" class="col"><button class="btn btn-bg" style="width: 100%;">movies</button></a>
             </div>
             <?php if($filter=='all'|| $filter=='movies' ): ?>
             <h1 class="text-center">movies</h1>

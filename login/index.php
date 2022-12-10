@@ -9,7 +9,6 @@
             'password'=>md5($password),
         ]);
         $res=$req->fetch();
-        var_dump($res);
         if($res){
         $_SESSION['iduser']=$res['iduser'];
         $_SESSION['username']=$res['username'];
@@ -19,6 +18,11 @@
         $_SESSION['isEmploye']=$res['isEmploye'];
         $_SESSION['createdate']=$res['createdate'];
         $_SESSION['verified']=$res['verified'];
+        if($_SESSION['verified']==0){
+            echo '<h1>an email have been sent to you on '.$_SESSION['createdate'].'check your email so you can log in</h1>';
+            echo "<a href='../index.php'>go to home</a>";
+            exit;
+        }
         if($_SESSION['isAdmin']==1){
         header('location:../admin/index.php?msg=welcome boss&class=success');
         }else if($_SESSION['isEmploye']==1){
