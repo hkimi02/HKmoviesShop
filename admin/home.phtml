@@ -25,7 +25,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../index.php"><span class="material-symbols-outlined text-white">
+                            <a class="nav-link active" aria-current="page"  href="../logout/"><span class="material-symbols-outlined text-white">
                                     home
                                 </span></a>
                         </li>
@@ -41,7 +41,7 @@
                                 <img src="<?= $_SESSION['avatar'] ?>" alt="mdo" width="32" height="32" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu text-small">
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="../edit_user/index.php?edit_info=<?= $_SESSION['iduser'] ?>">Settings</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -300,8 +300,61 @@
                         </div>
                     </div>
                     <div class="tab-pane fade tab-bg" id="v-pills-movies" role="tabpanel" aria-labelledby="v-pills-movies-tab" tabindex="0">
-                    </div>
+                    <div class="row">
+                            <h1 class="text-center">Added movies</h1>
+                            <?php foreach ($liked_movies as $element) : ?>
+                                <div class="image col">
+                                    <img class="image--img" src="<?= $element['poster'] ?> " height="300rem">
+                                    <div class="image--overplay">
+                                        <div class="image--description">
+                                            <p><?= $element['movie_name'] ?></p>
+                                            <p><?= $element['director'] ?></p>
+                                            <p>length : <?= calculer_taille($element['length'])['nbheures'] . ':' . calculer_taille($element['length'])['nbminutes']  ?></p>
+                                            <p class="badge active"><?php donner_genre($element['idgenre'], $db); ?></p>
+                                            <div class="row">
+                                                <a href="index.php?id_forever_movie=<?= $element['idmovie'] ?>" class="col">
+                                                    <button class="btn-poster"><span class="material-symbols-outlined">delete</span></button>
+                                                </a>
+                                                <a href="<?= $element['link']  ?>" class="col"><button class="btn-poster">
+                                                        <span class="material-symbols-outlined">
+                                                            play_arrow
+                                                        </span>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        </div>
                     <div class="tab-pane fade tab-bg" id="v-pills-shows" role="tabpanel" aria-labelledby="v-pills-shows-tab" tabindex="0">
+                        <div class="row">
+                    <h1 class="text-center">liked Shows</h1>
+                            <?php foreach ($liked_shows as $element) : ?>
+                                <div class="image col">
+                                    <img class="image--img" src="<?= $element['poster'] ?> " height="300rem">
+                                    <div class="image--overplay">
+                                        <div class="image--description">
+                                            <p><?= $element['name'] ?></p>
+                                            <p><?= $element['director'] ?></p>
+                                            <p class="badge active"><?php donner_genre($element['idgenre'], $db); ?></p>
+                                            <div class="row">
+                                                <a href="index.php?id_forever_show=<?= $element['idtvshow'] ?>" class="col">
+                                                    <button class="btn-poster"><span class="material-symbols-outlined">delete</span></button>
+                                                </a>
+                                                <a href="<?= $element['link']  ?>" class="col"><button class="btn-poster">
+                                                        <span class="material-symbols-outlined">
+                                                            play_arrow
+                                                        </span>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                            </div>
                     </div>
                 </div>
             </div>
