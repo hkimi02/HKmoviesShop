@@ -11,20 +11,22 @@ require_once '../db_connect.php';
       if($user){
         if($user['verified']==1){
             $resultat=1;
-            exit;
+  include "./verify.phtml";
+  exit;
         }else if($user['verified']==0){
             $sql=$db->prepare("UPDATE users SET token_verified=null,verified=1 where iduser=:id");
             $sql->execute(['id'=>$user['iduser']]);
             $resultat=2;
-            exit;
+  include "./verify.phtml";
+  exit;
         }
       }else{
         $resultat=3;
-        exit;
+  include "./verify.phtml";
+  exit;
       }
     }catch(Exception $e){
         $resultat=4;
     }
 
   }
-  include "./verify.phtml";

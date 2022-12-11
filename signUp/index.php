@@ -39,19 +39,19 @@ if (isset($_POST['submit'])) {
     $type = pathinfo($name_file, PATHINFO_EXTENSION);
     $type_dispo = ['png', 'jpg', 'jpeg', 'gif'];
     if (!in_array($type, $type_dispo)) {
-        header("location:index.php?msg=extention invalid&type=danger");
+        header("location:index.php?msg=extention invalid&class=danger");
         exit;
     }
     //check size 
     /*$size=$_FILES['avatar']['size'];
         if($size>){
-            header("location:index.php?msg=image size too large&type=danger");
+            header("location:index.php?msg=image size too large&class=danger");
             exit;
         }*/
     //move file to the project storage and generate the avatar path 
     $name_file = md5(mt_rand()) . '.' . $type;
     if (!move_uploaded_file($_FILES['avatar']['tmp_name'], '../storage/' . $name_file)) {
-        header("location:index.php?msg=image not uploaded&type=danger");
+        header("location:index.php?msg=image not uploaded&class=danger");
         exit;
     }
     $avatar = '../storage/' . $name_file;
