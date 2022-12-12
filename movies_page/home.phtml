@@ -107,8 +107,7 @@
                         <div class="image--overplay">
                             <div class="image--description">
                                 <p><?= $element['movie_name'] ?></p>
-                                <p><?= $element['director'] ?></p>
-                                <p><?= $element['descripition']?></p>
+                                <p>director :<?= $element['director'] ?></p>
                                 <p>length : <?= calculer_taille($element['length'])['nbheures'] . ':' . calculer_taille($element['length'])['nbminutes']  ?></p>
                                 <p class="badge active"><?php donner_genre($element['idgenre'], $db); ?></p>
                                 <div class="row">
@@ -141,7 +140,6 @@
                             <div class="image--description">
                                 <p><?= $element['name'] ?></p>
                                 <p><?= $element['director'] ?></p>
-                                <p><?= $element['description']?></p>
                                 <p class="badge active"><?php donner_genre($element['idgenre'], $db); ?></p>
                                 <div class="row">
                                     <a href="index.php?id_fav_show=<?=$element['idtvshow']?>" class="col">
