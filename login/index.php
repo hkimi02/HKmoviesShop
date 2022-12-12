@@ -24,12 +24,12 @@
             exit;
         }
         if($_SESSION['isAdmin']==1){
-        header('location:../admin/index.php?msg=welcome boss&class=success');
+        header('location:../admin/index.php?msg=welcome '.$_SESSION['username'].'&class=success');
         }else if($_SESSION['isEmploye']==1){
-            header('location:../profile_employe/index.php?msg=welcome employe&class=success');
+            header('location:../profile_employe/index.php?msg=welcome '.$_SESSION['username'].'&class=success');
         }
         else{
-            header('location:../profile_user/index.php?msg=welcome user&class=success');
+            header('location:../profile_user/index.php?msg=welcome '.$_SESSION['username'].'&class=success');
         }
     }
         else{
