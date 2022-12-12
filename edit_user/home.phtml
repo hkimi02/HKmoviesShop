@@ -74,10 +74,10 @@
             </div>
         </nav>
         <div class="main">
-        <div class="col-xl-12">
+        <div>
             <div class="d-flex justify-content-center">
             <div class="row shadow-lg">
-                <div class="sign-up-user-form col-lg-6">
+                <div class="sign-up-user-form>
                     <form class="p-5 rounded col" method="POST" action="./index.php" enctype="multipart/form-data">
                         <h1 class="text-center">Edit Your info</h1>
                         <?php if (array_key_exists('msg', $_GET)) : ?>
@@ -107,11 +107,12 @@
                         <button type="submit" class="btn submit-btn" name="update">update info</button>
                     </form>
                 </div>
+                </div>
                 <div class="col-lg-6">
                     <img src="../assets/images/edit_info.svg" class="d-lg-block d-none logo">
                 </div>
             </div>
-        </div>
+        
         </div>
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -297,7 +297,6 @@
                                 <?php } ?>
                             </tbody>
                         </table>
-
                     </div>
                     <div class="tab-pane fade tab-bg" id="v-pills-employes" role="tabpanel" aria-labelledby="v-pills-employes-tab" tabindex="0">
                         <button type="button" class="btn active" data-bs-target="#addshow" data-bs-toggle="modal">
@@ -319,7 +318,7 @@
                                                 <a href="index.php?id_delete_show=<?= $element['idtvshow'] ?>" class="col">
                                                     <button class="btn-poster"><span class="material-symbols-outlined">delete</span></button>
                                                 </a>
-                                                <a href="#" class="col">
+                                                <a href="../edit_show/index.php?id_show=<?= $element['idtvshow'] ?>" class="col">
                                                     <button class="btn-poster"><span class="material-symbols-outlined">edit</span></button></a>
                                                 <a href="<?= $element['link']  ?>" class="col"><button class="btn-poster">
                                                         <span class="material-symbols-outlined">
@@ -336,7 +335,7 @@
                     </div>
                     <div class="tab-pane fade tab-bg" id="v-pills-movies" role="tabpanel" aria-labelledby="v-pills-movies-tab" tabindex="0">
                     <div class="row">
-                            <h1 class="text-center">Added movies</h1>
+                            <h1 class="text-center">liked movies</h1>
                             <?php foreach ($liked_movies as $element) : ?>
                                 <div class="image col">
                                     <img class="image--img" src="<?= $element['poster'] ?> " height="300rem">
