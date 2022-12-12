@@ -6,3 +6,6 @@ the admin can do a crud to the employees
 the employees can also crud the movies 
 and their job is to post movies collect reclaims and all that 
 
+compte admin injecte au base de donne 
+email: hkimiamin02@gmail.com
+mdp:123
